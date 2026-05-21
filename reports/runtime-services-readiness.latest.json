@@ -1,9 +1,21 @@
 {
   "status": "onboarding_incomplete",
-  "checked_at": "2026-05-21T21:36:48.375Z",
+  "checked_at": "2026-05-21T22:28:14.912Z",
   "account_allocation": "account_b",
+  "supabase_key_mode": "missing",
+  "supabase_publishable_key_present": false,
+  "supabase_secret_key_present": false,
+  "supabase_legacy_anon_key_present": false,
+  "supabase_legacy_service_role_key_present": false,
   "readiness": {
-    "supabase_required_ready": false,
+    "supabase_project_ready": false,
+    "supabase_new_keys_ready": false,
+    "supabase_legacy_keys_ready": false,
+    "supabase_key_mode": "missing",
+    "supabase_publishable_key_present": false,
+    "supabase_secret_key_present": false,
+    "supabase_legacy_anon_key_present": false,
+    "supabase_legacy_service_role_key_present": false,
     "cloudflare_ready": false
   },
   "services": [
@@ -11,12 +23,12 @@
       "service": "supabase",
       "fields": [
         {
-          "key": "SUPABASE_URL",
-          "present": false
-        },
-        {
           "key": "SUPABASE_PROJECT_NAME",
           "present": true
+        },
+        {
+          "key": "SUPABASE_URL",
+          "present": false
         },
         {
           "key": "SUPABASE_PROJECT_REF",
@@ -27,16 +39,28 @@
           "present": false
         },
         {
+          "key": "SUPABASE_SCHEMA",
+          "present": true
+        },
+        {
+          "key": "SUPABASE_API_KEY_MODE",
+          "present": true
+        },
+        {
+          "key": "SUPABASE_PUBLISHABLE_KEY",
+          "present": false
+        },
+        {
+          "key": "SUPABASE_SECRET_KEY",
+          "present": false
+        },
+        {
           "key": "SUPABASE_ANON_KEY",
           "present": false
         },
         {
           "key": "SUPABASE_SERVICE_ROLE_KEY",
           "present": false
-        },
-        {
-          "key": "SUPABASE_SCHEMA",
-          "present": true
         }
       ]
     },
@@ -70,6 +94,6 @@
     "env_runtime_local": true,
     "env_cloudflare_local": true
   },
-  "next_required_action": "Fill .env.runtime.local and .env.cloudflare.local for Account B (caesar-agent-ledger-dev). No deploy.",
-  "public_note": "Metadata-only. No secrets in export."
+  "next_required_action": "Fill .env.runtime.local and .env.cloudflare.local for Account B (caesar-agent-ledger-dev). Prefer sb_publishable_/sb_secret_ keys. No deploy.",
+  "public_note": "Metadata-only. Prefer new Supabase API keys; legacy JWT optional fallback."
 }

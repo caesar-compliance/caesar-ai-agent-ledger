@@ -21,6 +21,9 @@ Caesar Agent Ledger uses **Account B** (isolated from Account A Regulation/Vendo
 
 ## Secret handling
 
+- **Supabase (preferred):** `SUPABASE_PUBLISHABLE_KEY` + `SUPABASE_SECRET_KEY` with `SUPABASE_API_KEY_MODE=new`.
+- **Legacy fallback:** JWT anon/service_role keys optional only.
+- **Never** commit `SUPABASE_SECRET_KEY` or use it in client/browser code.
 - Account B email and credentials: hub `.local/` + `.env.runtime.local`, `.env.cloudflare.local`
 - Tracked docs: labels and project names only
 
