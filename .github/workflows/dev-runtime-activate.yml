@@ -1,0 +1,214 @@
+name: Dev runtime activate
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type ACTIVATE_DEV_RUNTIME to confirm"
+        required: true
+        type: string
+      apply_schema:
+        description: "Apply Supabase dev schema (YES/NO)"
+        required: false
+        default: "NO"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+      deploy_worker:
+        description: "Deploy Cloudflare Worker (YES/NO)"
+        required: false
+        default: "YES"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+      set_worker_secrets:
+        description: "Set Worker secrets via wrangler (YES/NO)"
+        required: false
+        default: "YES"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+      enable_cron:
+        description: "Enable Worker cron triggers (YES/NO)"
+        required: false
+        default: "NO"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+      run_dry_ingestion:
+        description: "Run safe dry-run ingestion (YES/NO)"
+        required: false
+        default: "YES"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+      enable_network:
+        description: "Allow network execution (YES/NO)"
+        required: false
+        default: "NO"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+      run_live_ingestion_once:
+        description: "One-shot live ingestion (YES/NO)"
+        required: false
+        default: "NO"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+      post_deploy_smoke:
+        description: "Post-deploy health smoke (YES/NO)"
+        required: false
+        default: "YES"
+        type: choice
+        options:
+          - "NO"
+          - "YES"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  safety-gate:
+    runs-on: ubuntu-latest
+    environment: dev-runtime
+    steps:
+      - name: Confirm and policy gates
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+          APPLY_SCHEMA: ${{ inputs.apply_schema }}
+          DEPLOY_WORKER: ${{ inputs.deploy_worker }}
+          ENABLE_CRON: ${{ inputs.enable_cron }}
+          ENABLE_NETWORK: ${{ inputs.enable_network }}
+          RUN_LIVE_ONCE: ${{ inputs.run_live_ingestion_once }}
+          VAR_WORKER_DEPLOY: ${{ vars.CLOUDFLARE_ENABLE_WORKER_DEPLOY }}
+          VAR_CRON: ${{ vars.CLOUDFLARE_ENABLE_CRON_TRIGGER }}
+          VAR_APPLY_SCHEMA: ${{ vars.APPLY_SUPABASE_SCHEMA }}
+          VAR_NETWORK: ${{ vars.ENABLE_NETWORK_EXECUTION }}
+          VAR_LIVE: ${{ vars.ENABLE_LIVE_INGESTION }}
+          VAR_SCHEDULED: ${{ vars.ENABLE_SCHEDULED_MONITORING }}
+        run: |
+          set -euo pipefail
+          fail() { echo "::error::$1"; exit 1; }
+          [ "$CONFIRM" = "ACTIVATE_DEV_RUNTIME" ] || fail "confirm must be ACTIVATE_DEV_RUNTIME"
+          [ "$DEPLOY_WORKER" != "YES" ] || [ "$VAR_WORKER_DEPLOY" = "true" ] || fail "CLOUDFLARE_ENABLE_WORKER_DEPLOY must be true when deploy_worker=YES"
+          [ "$ENABLE_CRON" != "YES" ] || [ "$VAR_CRON" = "false" ] || fail "CLOUDFLARE_ENABLE_CRON_TRIGGER must be false unless enable_cron=YES"
+          [ "$APPLY_SCHEMA" != "YES" ] || [ "$VAR_APPLY_SCHEMA" = "false" ] || fail "APPLY_SUPABASE_SCHEMA must be false unless apply_schema=YES"
+          [ "$ENABLE_NETWORK" != "YES" ] || [ "$VAR_NETWORK" = "false" ] || fail "ENABLE_NETWORK_EXECUTION must be false unless enable_network=YES"
+          [ "$RUN_LIVE_ONCE" != "YES" ] || [ "$VAR_LIVE" = "false" ] || fail "ENABLE_LIVE_INGESTION must be false unless run_live_ingestion_once=YES"
+          [ "$ENABLE_CRON" != "YES" ] || [ "$VAR_SCHEDULED" = "false" ] || fail "ENABLE_SCHEDULED_MONITORING must be false unless enable_cron=YES"
+          [ "$RUN_LIVE_ONCE" != "YES" ] || [ "$ENABLE_NETWORK" = "YES" ] || fail "run_live_ingestion_once requires enable_network=YES"
+          echo "PASS: safety gates"
+
+  activate:
+    needs: safety-gate
+    runs-on: ubuntu-latest
+    environment: dev-runtime
+    env:
+      RUNTIME_ENV: dev
+      SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+      SUPABASE_PROJECT_REF: ${{ vars.SUPABASE_PROJECT_REF }}
+      SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+      SUPABASE_SCHEMA: ${{ vars.SUPABASE_SCHEMA }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_WORKER_NAME: ${{ vars.CLOUDFLARE_WORKER_NAME }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Materialize CI runtime env (no secret values logged)
+        run: |
+          set -euo pipefail
+          umask 077
+          cat > .env.runtime.local <<'ENVEOF'
+          SUPABASE_PROJECT_NAME=caesar-agent-ledger-dev
+          SUPABASE_API_KEY_MODE=new
+          APPLY_SUPABASE_SCHEMA=false
+          ENABLE_LIVE_INGESTION=false
+          ENABLE_SCHEDULED_MONITORING=false
+          ENABLE_NETWORK_EXECUTION=false
+          ENVEOF
+          {
+            echo "SUPABASE_URL=${SUPABASE_URL}"
+            echo "SUPABASE_PROJECT_REF=${SUPABASE_PROJECT_REF}"
+            echo "SUPABASE_PUBLISHABLE_KEY=${SUPABASE_PUBLISHABLE_KEY}"
+            echo "SUPABASE_SECRET_KEY=${SUPABASE_SECRET_KEY}"
+            echo "SUPABASE_DB_URL=${SUPABASE_DB_URL}"
+            echo "SUPABASE_SCHEMA=${SUPABASE_SCHEMA}"
+          } >> .env.runtime.local
+          cat > .env.cloudflare.local <<'ENVEOF'
+          CLOUDFLARE_ENABLE_WORKER_DEPLOY=false
+          CLOUDFLARE_ENABLE_CRON_TRIGGER=false
+          ENVEOF
+          {
+            echo "CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID}"
+            echo "CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}"
+            echo "CLOUDFLARE_WORKER_NAME=${CLOUDFLARE_WORKER_NAME}"
+          } >> .env.cloudflare.local
+
+      - name: Runtime credential sanity check
+        run: node scripts/runtime/check-service-credentials.mjs
+
+      - name: Apply Supabase schema
+        if: inputs.apply_schema == 'YES'
+        run: |
+          echo "::error::schema apply not implemented for caesar-ai-agent-ledger — no reviewed apply script in repo"
+          exit 1
+
+      - name: Worker deploy
+        if: inputs.deploy_worker == 'YES'
+        run: |
+          echo "::warning::Worker deploy skipped — Cloudflare Worker scaffold not present in agent-ledger"
+        id: deploy_worker
+
+      - name: Set Worker secrets
+        if: inputs.set_worker_secrets == 'YES'
+        run: echo "::warning::Worker secrets skipped — no Worker scaffold"
+
+      - name: Post-deploy health smoke
+        if: inputs.post_deploy_smoke == 'YES' && inputs.deploy_worker == 'YES'
+        run: echo "::warning::Health smoke skipped — Worker not deployed"
+
+      - name: Dry-run ingestion
+        if: inputs.run_dry_ingestion == 'YES'
+        run: echo "::warning::Dry-run ingestion skipped — no ingestion scripts in agent-ledger yet"
+
+      - name: One-shot live ingestion
+        if: inputs.run_live_ingestion_once == 'YES'
+        run: |
+          echo "::error::One-shot live ingestion not supported for agent-ledger"
+          exit 1
+
+      - name: Cron deployment
+        if: inputs.enable_cron == 'YES'
+        run: |
+          echo "::error::Cron deployment unsupported — no Worker scaffold"
+          exit 1
+
+      - name: Final summary
+        if: always()
+        run: |
+          {
+            echo "## Dev runtime activation summary"
+            echo "- Repo: caesar-ai-agent-ledger"
+            echo "- Mode: validation and credential readiness (schema-plan)"
+            echo "- Worker scaffold: missing"
+            echo "- Schema apply script: missing"
+            echo "- See docs/runtime/DEV_RUNTIME_ACTIVATION.md"
+          } >> "$GITHUB_STEP_SUMMARY"
