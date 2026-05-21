@@ -1,6 +1,6 @@
 {
-  "status": "ready_for_manual_schema_review",
-  "checked_at": "2026-05-21T22:56:04.045Z",
+  "status": "ready_for_manual_worker_review",
+  "checked_at": "2026-05-21T23:18:22.331Z",
   "account_allocation": "account_b",
   "supabase_key_mode": "new",
   "supabase_publishable_key_present": true,
@@ -16,7 +16,7 @@
     "supabase_secret_key_present": true,
     "supabase_legacy_anon_key_present": false,
     "supabase_legacy_service_role_key_present": false,
-    "cloudflare_ready": false
+    "cloudflare_ready": true
   },
   "services": [
     {
@@ -69,11 +69,11 @@
       "fields": [
         {
           "key": "CLOUDFLARE_ACCOUNT_ID",
-          "present": false
+          "present": true
         },
         {
           "key": "CLOUDFLARE_API_TOKEN",
-          "present": false
+          "present": true
         },
         {
           "key": "CLOUDFLARE_WORKER_NAME",
