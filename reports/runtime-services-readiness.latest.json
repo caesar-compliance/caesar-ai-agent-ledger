@@ -1,0 +1,75 @@
+{
+  "status": "onboarding_incomplete",
+  "checked_at": "2026-05-21T21:36:48.375Z",
+  "account_allocation": "account_b",
+  "readiness": {
+    "supabase_required_ready": false,
+    "cloudflare_ready": false
+  },
+  "services": [
+    {
+      "service": "supabase",
+      "fields": [
+        {
+          "key": "SUPABASE_URL",
+          "present": false
+        },
+        {
+          "key": "SUPABASE_PROJECT_NAME",
+          "present": true
+        },
+        {
+          "key": "SUPABASE_PROJECT_REF",
+          "present": false
+        },
+        {
+          "key": "SUPABASE_DB_URL",
+          "present": false
+        },
+        {
+          "key": "SUPABASE_ANON_KEY",
+          "present": false
+        },
+        {
+          "key": "SUPABASE_SERVICE_ROLE_KEY",
+          "present": false
+        },
+        {
+          "key": "SUPABASE_SCHEMA",
+          "present": true
+        }
+      ]
+    },
+    {
+      "service": "cloudflare",
+      "fields": [
+        {
+          "key": "CLOUDFLARE_ACCOUNT_ID",
+          "present": false
+        },
+        {
+          "key": "CLOUDFLARE_API_TOKEN",
+          "present": false
+        },
+        {
+          "key": "CLOUDFLARE_WORKER_NAME",
+          "present": true
+        }
+      ]
+    }
+  ],
+  "safety_flags": {
+    "apply_supabase_schema": false,
+    "enable_live_ingestion": false,
+    "enable_scheduled_monitoring": false,
+    "enable_network_execution": false,
+    "cloudflare_enable_worker_deploy": false,
+    "cloudflare_enable_cron_trigger": false
+  },
+  "local_env_files": {
+    "env_runtime_local": true,
+    "env_cloudflare_local": true
+  },
+  "next_required_action": "Fill .env.runtime.local and .env.cloudflare.local for Account B (caesar-agent-ledger-dev). No deploy.",
+  "public_note": "Metadata-only. No secrets in export."
+}

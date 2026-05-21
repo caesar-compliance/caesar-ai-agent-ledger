@@ -1,1 +1,16 @@
 .DS_Store
+
+# Local runtime secrets (examples are committed)
+.env
+.env.local
+.env.*.local
+.env.runtime.local
+.env.cloudflare.local
+!.env.example
+!.env.runtime.example
+!.env.cloudflare.example
+.local/
+.local-secrets/
+secrets/
+*.secret
+*.secrets
