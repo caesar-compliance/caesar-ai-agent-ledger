@@ -1,6 +1,6 @@
 # Agent Ledger — Next development handoff
 
-**Frozen:** 22 May 2026 (T021 backend runtime readiness boundary hardening)
+**Frozen:** 22 May 2026 (T022 local Supabase migration rehearsal compile gate)
 **Branch:** `main`
 **Status:** Runtime scaffold includes local-only JSONL buffering, deterministic export/import dry-run, read-only projection/API/dashboard, and machine-checkable runtime boundary validation; runtime remains **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
 
@@ -20,7 +20,8 @@
 | Read-only local projection over buffer/export bundle | **Pass** (T018) |
 | Localhost-only read-only projection API | **Pass** (T019) |
 | Static/private local dashboard | **Pass** (T020) |
-| Backend runtime readiness boundary validator | **Pass** (T021) |
+| Backend runtime readiness boundary validator | **Pass** (T021/T022) |
+| Local Supabase migration rehearsal validator | **Pass** (T022) |
 
 **Note:** This is an **internal audit/runtime ledger**, not a public watcher site.
 
@@ -61,7 +62,14 @@ node scripts/test-cloudflare-worker-local.mjs
 npm run runtime:smoke
 ```
 
-### Step 2 — CI validation-only
+### Step 2 — Local static Supabase rehearsal validation (no DB run/apply)
+
+```bash
+npm run runtime:validate:supabase-rehearsal
+node scripts/runtime/validate-supabase-schema.mjs
+```
+
+### Step 3 — CI validation-only (future controlled step)
 
 ```bash
 gh workflow run dev-runtime-activate.yml \
@@ -77,19 +85,19 @@ gh workflow run dev-runtime-activate.yml \
   -f post_deploy_smoke=NO
 ```
 
-### Step 3 — Schema apply (pooler URL in GitHub secret)
+### Step 4 — Schema apply (pooler URL in GitHub secret; only after explicit approval)
 
 ```bash
 gh workflow run dev-runtime-activate.yml ... -f apply_schema=YES -f deploy_worker=NO ...
 ```
 
-### Step 4 — Worker deploy
+### Step 5 — Worker deploy
 
 ```bash
 gh workflow run dev-runtime-activate.yml ... -f deploy_worker=YES -f set_worker_secrets=YES -f post_deploy_smoke=YES ...
 ```
 
-### Step 5 — Protected event persistence
+### Step 6 — Protected event persistence
 
 Implement gated `POST /events` only after:
 
@@ -118,7 +126,7 @@ Internal **AI agent audit ledger**: tasks, runs, events, runtime_events for gove
 3. Do not commit secrets or `.env.*.local`.
 4. Event model and local buffer doc changes are safe to commit; infrastructure changes need Control Tower.
 5. Final report required.
-6. Next likely product step after T021: local Supabase migration rehearsal/compile gate (still no live apply) or controlled private runtime setup preparation only after explicit approval.
+6. Next likely product step after T022: local compile harness design (disabled by default) or controlled private runtime setup preparation only after explicit approval.
 
 ## References
 

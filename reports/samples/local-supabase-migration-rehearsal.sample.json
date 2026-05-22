@@ -1,0 +1,24 @@
+{
+  "migration_path": "ops/supabase/001_agent_ledger_runtime_schema.sql",
+  "detected_tables": [
+    "agent_runs",
+    "agent_events",
+    "runtime_events"
+  ],
+  "detected_create_table_statements_count": 3,
+  "detected_index_or_constraint_hints": [
+    "idx_agent_runs_status",
+    "idx_agent_events_run_id",
+    "idx_runtime_events_created_at",
+    "references agent_ledger.agent_runs (run_id)"
+  ],
+  "forbidden_pattern_scan": {
+    "supabase_db_push": false,
+    "psql_postgres_connection": false,
+    "drop_database": false,
+    "drop_schema": false,
+    "remote_connection_string": false,
+    "obvious_hardcoded_secret": false
+  },
+  "mode": "local_static_rehearsal_only"
+}

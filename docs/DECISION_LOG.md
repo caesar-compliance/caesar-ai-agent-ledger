@@ -50,3 +50,12 @@ This document maps all high-level technical, strategic, and governance decisions
     2. Add a Node built-in boundary validator that checks required docs/scripts/files, workflow manual-gate semantics, worker/API/dashboard safety boundaries, and tracked secret-file constraints.
     3. Make boundary validation part of runtime smoke so future runtime-related changes must pass machine-checkable non-activation safeguards.
 *   **Rationale:** Preserves safe-by-default local development while preparing future controlled runtime rehearsal and activation steps behind explicit approval.
+
+### [DEC-006] — 22 May 2026 — Local Supabase Migration Rehearsal Compile Gate
+
+*   **Status:** Approved
+*   **Decisions:**
+    1. Add a dedicated local Supabase migration rehearsal contract and machine-readable policy config limited to static-only validation mode.
+    2. Add a Node built-in rehearsal validator that checks required migration/doc artifacts, expected table presence, forbidden SQL/connection patterns, tracked secret/tmp guardrails, and workflow cron absence without executing SQL.
+    3. Extend runtime boundary and smoke validation to require the T022 rehearsal gate while keeping all execution paths local-only and non-persistent.
+*   **Rationale:** Introduces compile-gate readiness structure for future local DB validation work without running Supabase/psql/Docker or writing to any database.

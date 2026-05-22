@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "project_name": "Caesar AI Agent Ledger",
+  "package_name": "caesar-ai-agent-ledger",
+  "rehearsal_mode": "local_static_rehearsal_only",
+  "migrations": [
+    {
+      "id": "001_agent_ledger_runtime_schema",
+      "path": "ops/supabase/001_agent_ledger_runtime_schema.sql",
+      "expected_tables": [
+        "agent_runs",
+        "agent_events",
+        "runtime_events"
+      ],
+      "expected_indexes_or_constraints": [
+        "idx_agent_runs_status",
+        "idx_agent_events_run_id",
+        "idx_runtime_events_created_at",
+        "references agent_ledger.agent_runs (run_id)"
+      ]
+    }
+  ],
+  "forbidden_actions": [
+    "live_supabase_apply",
+    "remote_psql",
+    "remote_supabase_cli",
+    "database_writes",
+    "cloudflare_deploy",
+    "github_actions_run",
+    "cron_scheduler"
+  ],
+  "required_static_checks": [
+    "runtime:validate:boundary",
+    "runtime:validate:supabase-rehearsal",
+    "node scripts/runtime/validate-supabase-schema.mjs"
+  ],
+  "required_runtime_boundary_script": "scripts/runtime/validate-runtime-readiness-boundary.mjs",
+  "generated_report_churn_file": "reports/runtime-services-readiness.latest.json",
+  "future_local_compile_gate_status": {
+    "enabled": false,
+    "requires_explicit_control_tower_approval": true
+  }
+}

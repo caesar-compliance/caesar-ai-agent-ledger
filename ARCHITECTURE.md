@@ -38,6 +38,7 @@ The SDK is structured into four core module boundaries:
 6.  **Export/Import Dry-Run Contract:** Packages validated buffered events into deterministic local bundles and computes local-only import plans for `agent_runs`, `agent_events`, and `runtime_events` without network or persistence.
 7.  **Read-only Projection Layer:** Builds deterministic local read models (`runs`, `events`, `approvals`, `tool_calls`, `risks`, `errors`, `summary`) from validated local buffer or export-bundle events.
 8.  **Localhost Read-only API Layer:** Exposes projection entities through localhost-only read-only HTTP endpoints for operator inspection (`GET /projection`, `/runs`, `/events`, and related slices).
+9.  **Local Supabase Migration Rehearsal Gate:** Performs static migration safety/readiness checks against SQL artifacts and policy config without running DB services or applying schema.
 
 ---
 

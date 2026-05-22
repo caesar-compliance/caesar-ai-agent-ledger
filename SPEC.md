@@ -27,6 +27,7 @@ Autonomous agents make decisions dynamically that can include writing to files, 
 *   **Local Export/Import Dry-Run:** Deterministic local export bundles (`manifest.json`, `events.jsonl`, `summary.json`, `validation-report.json`) and import dry-run planning mapped to runtime tables without Supabase writes.
 *   **Read-only Local Projection:** Local read model over in-memory events, local buffer JSONL, or local export bundles that produces metadata-only runs/events/approvals/tool-calls/risk/error views.
 *   **Localhost Read-only API:** Local-only HTTP API exposing projection metadata via read-only routes (`GET` only) on `127.0.0.1`.
+*   **Local Supabase Migration Rehearsal:** Static-only local rehearsal validation over `ops/supabase/001_agent_ledger_runtime_schema.sql` with forbidden-action boundaries and no SQL execution.
 
 ### 5. Future Scope
 *   **Cryptographic Signing:** Local key pair verification signing every transaction record to ensure proof-of-state.

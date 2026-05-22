@@ -22,6 +22,7 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 📚 **`docs/runtime/LOCALHOST_READ_ONLY_API.md`** | Local API Contract | Defines localhost-only read-only API endpoints, filters, response/error shapes, and safety boundaries for T019. |
 | 📚 **`docs/runtime/STATIC_LOCAL_DASHBOARD.md`** | Dashboard Contract | Defines static/private local dashboard purpose, non-goals, data-source model, sections, filters, and explicit safety boundaries for T020. |
 | 📚 **`docs/runtime/BACKEND_RUNTIME_READINESS_BOUNDARY.md`** | Runtime Boundary Contract | Defines backend runtime readiness purpose, non-goals, allowed local validation commands, forbidden activation actions, and readiness gates for future approved runtime work (T021). |
+| 📚 **`docs/runtime/LOCAL_SUPABASE_MIGRATION_REHEARSAL.md`** | Supabase Rehearsal Contract | Defines T022 local-only static migration rehearsal purpose, forbidden actions, future compile-gate requirements, and explicit no-DB/no-apply boundary. |
 | 🔬 **`docs/RESEARCH_CONTEXT.md`** | Domain Research | Ingests strategic requirements, user personas, and target scopes compiled from the ecosystem. |
 | ⚖️ **`docs/DECISION_LOG.md`** | Decision Log | Records chronological technical, strategic, and governance decisions. |
 | 🧪 **`schemas/agent-ledger-event.schema.json`** | Event Schema | Local JSON Schema draft 2020-12 contract for metadata-first agent events. |
@@ -41,7 +42,8 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧪 **`scripts/runtime/validate-static-local-dashboard.mjs`** | Dashboard Validator | Static validator for dashboard files, external-resource bans, secret-like scan checks, and deterministic sample summary assertions. |
 | 🧪 **`scripts/runtime/test-static-local-dashboard.mjs`** | Dashboard Localhost Test | Starts a localhost-only static file server (`127.0.0.1`, port `0`) and verifies key dashboard asset routes return `200`. |
 | 🧪 **`scripts/runtime/validate-runtime-readiness-boundary.mjs`** | Runtime Boundary Validator | Node built-in validator that checks boundary config/doc existence, required scripts/files, workflow/manual-gate protections, worker/api/dashboard safety boundaries, and tracked secret-file constraints (T021). |
-| 🧪 **`scripts/runtime/runtime-smoke.mjs`** | Smoke Validation | Runs local schema, event-model, and credential checks with exit-code enforcement. |
+| 🧪 **`scripts/runtime/validate-local-supabase-migration-rehearsal.mjs`** | Supabase Rehearsal Validator | Node built-in validator for T022 static schema-table checks, forbidden-pattern scans, tracked env/tmp guardrails, and workflow cron/schedule checks with no SQL execution. |
+| 🧪 **`scripts/runtime/runtime-smoke.mjs`** | Smoke Validation | Runs local event/runtime validations, boundary checks, Supabase rehearsal checks, schema static checks, and credential checks with exit-code enforcement. |
 | 🧪 **`scripts/test-cloudflare-worker-local.mjs`** | Worker Local Test | Verifies the disabled-by-default event route and stubbed local readiness behavior. |
 | 🧪 **`docs/runtime/LOCAL_EVENT_BUFFER.md`** | Buffer Guide | Local-only JSONL buffer purpose, safety boundary, idempotency, and test instructions. |
 | 🧪 **`work-items/T015-agent-event-model-validation-hardening/TASK.md`** | Work Item Task | Task scope, boundaries, and checklist for the T015 event-model hardening work. |
@@ -70,6 +72,8 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧭 **`site/local-dashboard/assets/dashboard.js`** | Dashboard Renderer | Client-side local renderer for sample projection loading, summary cards, section tables, and filters. |
 | 🧭 **`site/local-dashboard/data/sample-projection.json`** | Dashboard Sample Data | Deterministic metadata-only projection sample aligned to T018/T019 summary values. |
 | ⚙️ **`config/runtime-readiness-boundary.json`** | Runtime Boundary Policy | Machine-checkable policy config for local runtime readiness boundaries, required scripts/docs/files, and forbidden tracked files (T021). |
+| ⚙️ **`config/local-supabase-migration-rehearsal.json`** | Supabase Rehearsal Policy | Machine-checkable T022 policy config for local static migration rehearsal mode, expected migration structure, and forbidden actions. |
+| 🗂️ **`reports/samples/local-supabase-migration-rehearsal.sample.json`** | Rehearsal Sample Manifest | Deterministic/sanitized static sample output for local Supabase migration rehearsal scans. |
 | 🧪 **`work-items/T020-static-local-dashboard/TASK.md`** | Work Item Task | Task scope, boundaries, and checklist for T020 static/private local dashboard implementation. |
 | 🧪 **`work-items/T020-static-local-dashboard/DECISIONS.md`** | Work Item Decisions | Captures implementation assumptions and local-only dashboard safety tradeoffs for T020. |
 | 🧪 **`work-items/T020-static-local-dashboard/VALIDATION.md`** | Work Item Validation | Records required validation commands and outcomes for T020. |
@@ -78,6 +82,10 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧪 **`work-items/T021-backend-runtime-readiness-boundary/DECISIONS.md`** | Work Item Decisions | Captures implementation choices and machine-check boundary tradeoffs for T021. |
 | 🧪 **`work-items/T021-backend-runtime-readiness-boundary/VALIDATION.md`** | Work Item Validation | Records required validation command execution outcomes for T021. |
 | 🧪 **`work-items/T021-backend-runtime-readiness-boundary/FINAL_REPORT.md`** | Work Item Report | Final closeout report for T021 backend runtime readiness boundary hardening. |
+| 🧪 **`work-items/T022-local-supabase-migration-rehearsal/TASK.md`** | Work Item Task | Task scope, boundaries, and deliverables for T022 local Supabase migration rehearsal/compile gate implementation. |
+| 🧪 **`work-items/T022-local-supabase-migration-rehearsal/DECISIONS.md`** | Work Item Decisions | Captures T022 static-only design choices and validator safety assumptions. |
+| 🧪 **`work-items/T022-local-supabase-migration-rehearsal/VALIDATION.md`** | Work Item Validation | Records required cleanup, baseline, and final validation command outcomes for T022. |
+| 🧪 **`work-items/T022-local-supabase-migration-rehearsal/FINAL_REPORT.md`** | Work Item Report | Final closeout report for T022 including safety confirmations and merge status. |
 | ⚙️ **`work-items/.gitkeep`** | Work Sandbox | Directory placeholder preserving workspace sandboxes for active task executions. |
 
 ---

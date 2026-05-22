@@ -18,6 +18,7 @@ const REQUIRED_SCRIPTS = [
   "runtime:test:static-dashboard",
   "runtime:ingestion:dry-run",
   "runtime:smoke",
+  "runtime:validate:supabase-rehearsal",
 ];
 
 const REQUIRED_RUNTIME_FILES = [
@@ -28,6 +29,9 @@ const REQUIRED_RUNTIME_FILES = [
   "docs/runtime/LOCALHOST_READ_ONLY_API.md",
   "docs/runtime/STATIC_LOCAL_DASHBOARD.md",
   "ops/supabase/001_agent_ledger_runtime_schema.sql",
+  "docs/runtime/LOCAL_SUPABASE_MIGRATION_REHEARSAL.md",
+  "config/local-supabase-migration-rehearsal.json",
+  "scripts/runtime/validate-local-supabase-migration-rehearsal.mjs",
   "ops/cloudflare-workers/agent-ledger-runtime/src/index.js",
   "site/local-dashboard/index.html",
 ];

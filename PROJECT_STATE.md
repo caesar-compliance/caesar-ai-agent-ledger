@@ -8,12 +8,12 @@ This document tracks the current active state, milestones, and boundaries for th
 
 *   **Repository Name:** `caesar-ai-agent-ledger`
 *   **Current Version:** `0.1.0`
-*   **Current Phase:** `runtime scaffold / backend runtime readiness boundary`
+*   **Current Phase:** `runtime scaffold / local Supabase migration rehearsal compile gate`
 *   **Status:** `active`
-*   **Latest Known Commit:** `pending final T021 closeout`
-*   **Latest Completed Task:** `Implemented backend runtime readiness boundary documentation, policy config, and machine-checkable local boundary validator without activating runtime infrastructure.`
-*   **Active Work Item:** `T021-backend-runtime-readiness-boundary`
-*   **Next Recommended Step:** `local Supabase migration rehearsal/compile gate (no live apply) or controlled private runtime setup preparation only after explicit approval`
+*   **Latest Known Commit:** `pending final T022 closeout`
+*   **Latest Completed Task:** `Implemented local Supabase migration rehearsal/compile gate with static-only validation, T022 boundary integration, and no schema apply/runtime activation.`
+*   **Active Work Item:** `T022-local-supabase-migration-rehearsal`
+*   **Next Recommended Step:** `design local compile harness (disabled by default) or prepare controlled private runtime setup only after explicit approval`
 
 ---
 
