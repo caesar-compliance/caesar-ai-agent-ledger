@@ -19,6 +19,8 @@ const REQUIRED_SCRIPTS = [
   "runtime:ingestion:dry-run",
   "runtime:smoke",
   "runtime:validate:supabase-rehearsal",
+  "runtime:db-compile-harness:stub",
+  "runtime:validate:db-compile-harness",
 ];
 
 const REQUIRED_RUNTIME_FILES = [
@@ -32,6 +34,10 @@ const REQUIRED_RUNTIME_FILES = [
   "docs/runtime/LOCAL_SUPABASE_MIGRATION_REHEARSAL.md",
   "config/local-supabase-migration-rehearsal.json",
   "scripts/runtime/validate-local-supabase-migration-rehearsal.mjs",
+  "docs/runtime/LOCAL_DB_COMPILE_HARNESS.md",
+  "config/local-db-compile-harness.json",
+  "scripts/runtime/local-db-compile-harness-stub.mjs",
+  "scripts/runtime/validate-local-db-compile-harness.mjs",
   "ops/cloudflare-workers/agent-ledger-runtime/src/index.js",
   "site/local-dashboard/index.html",
 ];
@@ -56,6 +62,7 @@ const summary = {
     local_api_boundary: false,
     static_dashboard_boundary: false,
     generated_report_churn: false,
+    db_compile_harness_disabled: false,
   },
   failures: [],
 };
@@ -233,6 +240,28 @@ if (config && config.generated_report_churn_file === "reports/runtime-services-r
   summary.checks.generated_report_churn = true;
 } else {
   fail("generated report churn config/path mismatch or file missing");
+}
+
+const dbCompileConfigPath = path.join(ROOT, "config/local-db-compile-harness.json");
+if (!fs.existsSync(dbCompileConfigPath)) {
+  fail("config/local-db-compile-harness.json missing");
+} else {
+  try {
+    const dbCompileConfig = JSON.parse(fs.readFileSync(dbCompileConfigPath, "utf8"));
+    const disabled = dbCompileConfig.enabled === false;
+    const executionDisallowed = dbCompileConfig.execution_allowed_now === false;
+    const approvalRequired = dbCompileConfig.requires_explicit_control_tower_approval === true;
+    const disabledMode = dbCompileConfig.harness_mode === "disabled_stub_only";
+    assert(disabled, "local DB compile harness enabled=false");
+    assert(executionDisallowed, "local DB compile harness execution_allowed_now=false");
+    assert(approvalRequired, "local DB compile harness requires explicit Control Tower approval");
+    assert(disabledMode, "local DB compile harness mode is disabled_stub_only");
+    if (disabled && executionDisallowed && approvalRequired && disabledMode) {
+      summary.checks.db_compile_harness_disabled = true;
+    }
+  } catch (error) {
+    fail(`config/local-db-compile-harness.json parse failed: ${error.message}`);
+  }
 }
 
 summary.ok = failed === 0;

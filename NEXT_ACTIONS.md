@@ -9,7 +9,8 @@ This document prioritizes upcoming development tasks and establishes execution b
 ### 1. Prioritized Next Steps
 *   **Runtime boundary hardening:** Completed in T021 with machine-checkable boundary validation and explicit non-activation constraints.
 *   **Local Supabase migration rehearsal gate:** Completed in T022 with static-only validator and no DB execution/apply path.
-*   **Next backend gate:** Design a local compile harness that remains disabled by default unless explicitly approved.
+*   **Disabled local DB compile harness stub gate:** Completed in T023 with disabled-by-default config, non-executing stub, and validator coverage.
+*   **Next backend gate:** Design local DB compile harness enablement criteria (still disabled) and private runtime setup checklist only after explicit approval.
 
 ### 2. Safe Autonomous Tasks
 *   Adding comments and documentation files inside the planned SDK module structures.

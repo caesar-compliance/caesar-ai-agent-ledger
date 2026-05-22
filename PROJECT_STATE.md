@@ -8,12 +8,12 @@ This document tracks the current active state, milestones, and boundaries for th
 
 *   **Repository Name:** `caesar-ai-agent-ledger`
 *   **Current Version:** `0.1.0`
-*   **Current Phase:** `runtime scaffold / local Supabase migration rehearsal compile gate`
+*   **Current Phase:** `runtime scaffold / local Supabase rehearsal + disabled local DB compile harness stub gate`
 *   **Status:** `active`
-*   **Latest Known Commit:** `pending final T022 closeout`
-*   **Latest Completed Task:** `Implemented local Supabase migration rehearsal/compile gate with static-only validation, T022 boundary integration, and no schema apply/runtime activation.`
-*   **Active Work Item:** `T022-local-supabase-migration-rehearsal`
-*   **Next Recommended Step:** `design local compile harness (disabled by default) or prepare controlled private runtime setup only after explicit approval`
+*   **Latest Known Commit:** `pending final T023 closeout`
+*   **Latest Completed Task:** `Implemented disabled-by-default local DB compile harness stub gate (T023) with config/doc/stub/validator integration into rehearsal, boundary, and smoke validation.`
+*   **Active Work Item:** `T023-disabled-local-db-compile-harness-stub`
+*   **Next Recommended Step:** `design local DB compile harness enablement gate (still disabled) or prepare private runtime setup checklist only after explicit approval`
 
 ---
 

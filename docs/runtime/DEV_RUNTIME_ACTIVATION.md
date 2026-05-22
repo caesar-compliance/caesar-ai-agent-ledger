@@ -20,6 +20,8 @@ Supabase: `caesar-agent-ledger-dev` (schema `agent_ledger`)
 | Static/private local dashboard localhost test | Yes — `npm run runtime:test:static-dashboard` |
 | Backend runtime readiness boundary validate | Yes — `npm run runtime:validate:boundary` |
 | Local Supabase migration rehearsal validate | Yes — `npm run runtime:validate:supabase-rehearsal` |
+| Local DB compile harness stub (disabled) | Yes — `npm run runtime:db-compile-harness:stub` |
+| Local DB compile harness validate | Yes — `npm run runtime:validate:db-compile-harness` |
 | DB health | Yes — `npm run runtime:db:health` |
 | Worker deploy | Yes — `ops/cloudflare-workers/agent-ledger-runtime` |
 | `/healthz` `/readyz` `/version` | Yes |
@@ -45,9 +47,11 @@ Supabase: `caesar-agent-ledger-dev` (schema `agent_ledger`)
 8. `npm run runtime:test:static-dashboard`
 9. `npm run runtime:validate:boundary`
 10. `npm run runtime:validate:supabase-rehearsal`
-11. `node scripts/runtime/check-service-credentials.mjs`
-12. `npm run test:worker:local`
-13. CI: validation only, then `apply_schema=YES`, then `deploy_worker=YES`
+11. `npm run runtime:db-compile-harness:stub`
+12. `npm run runtime:validate:db-compile-harness`
+13. `node scripts/runtime/check-service-credentials.mjs`
+14. `npm run test:worker:local`
+15. CI: validation only, then `apply_schema=YES`, then `deploy_worker=YES`
 
 ## Rollback
 

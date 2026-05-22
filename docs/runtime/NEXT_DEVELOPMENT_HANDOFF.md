@@ -1,6 +1,6 @@
 # Agent Ledger — Next development handoff
 
-**Frozen:** 22 May 2026 (T022 local Supabase migration rehearsal compile gate)
+**Frozen:** 22 May 2026 (T023 disabled local DB compile harness stub gate)
 **Branch:** `main`
 **Status:** Runtime scaffold includes local-only JSONL buffering, deterministic export/import dry-run, read-only projection/API/dashboard, and machine-checkable runtime boundary validation; runtime remains **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
 
@@ -21,7 +21,8 @@
 | Localhost-only read-only projection API | **Pass** (T019) |
 | Static/private local dashboard | **Pass** (T020) |
 | Backend runtime readiness boundary validator | **Pass** (T021/T022) |
-| Local Supabase migration rehearsal validator | **Pass** (T022) |
+| Local Supabase migration rehearsal validator | **Pass** (T022/T023) |
+| Local DB compile harness validator (disabled stub) | **Pass** (T023) |
 
 **Note:** This is an **internal audit/runtime ledger**, not a public watcher site.
 
@@ -67,6 +68,13 @@ npm run runtime:smoke
 ```bash
 npm run runtime:validate:supabase-rehearsal
 node scripts/runtime/validate-supabase-schema.mjs
+```
+
+### Step 2b — Local DB compile harness stub validation (disabled, non-executing)
+
+```bash
+npm run runtime:db-compile-harness:stub
+npm run runtime:validate:db-compile-harness
 ```
 
 ### Step 3 — CI validation-only (future controlled step)
@@ -126,7 +134,7 @@ Internal **AI agent audit ledger**: tasks, runs, events, runtime_events for gove
 3. Do not commit secrets or `.env.*.local`.
 4. Event model and local buffer doc changes are safe to commit; infrastructure changes need Control Tower.
 5. Final report required.
-6. Next likely product step after T022: local compile harness design (disabled by default) or controlled private runtime setup preparation only after explicit approval.
+6. Next likely product step after T023: local DB compile harness enablement gate design (still disabled) or controlled private runtime setup preparation only after explicit approval.
 
 ## References
 

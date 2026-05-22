@@ -23,6 +23,7 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 📚 **`docs/runtime/STATIC_LOCAL_DASHBOARD.md`** | Dashboard Contract | Defines static/private local dashboard purpose, non-goals, data-source model, sections, filters, and explicit safety boundaries for T020. |
 | 📚 **`docs/runtime/BACKEND_RUNTIME_READINESS_BOUNDARY.md`** | Runtime Boundary Contract | Defines backend runtime readiness purpose, non-goals, allowed local validation commands, forbidden activation actions, and readiness gates for future approved runtime work (T021). |
 | 📚 **`docs/runtime/LOCAL_SUPABASE_MIGRATION_REHEARSAL.md`** | Supabase Rehearsal Contract | Defines T022 local-only static migration rehearsal purpose, forbidden actions, future compile-gate requirements, and explicit no-DB/no-apply boundary. |
+| 📚 **`docs/runtime/LOCAL_DB_COMPILE_HARNESS.md`** | DB Compile Harness Contract | Defines T023 disabled-by-default local DB compile harness stub boundaries, future approval requirements, and explicit non-execution guarantees. |
 | 🔬 **`docs/RESEARCH_CONTEXT.md`** | Domain Research | Ingests strategic requirements, user personas, and target scopes compiled from the ecosystem. |
 | ⚖️ **`docs/DECISION_LOG.md`** | Decision Log | Records chronological technical, strategic, and governance decisions. |
 | 🧪 **`schemas/agent-ledger-event.schema.json`** | Event Schema | Local JSON Schema draft 2020-12 contract for metadata-first agent events. |
@@ -43,6 +44,8 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧪 **`scripts/runtime/test-static-local-dashboard.mjs`** | Dashboard Localhost Test | Starts a localhost-only static file server (`127.0.0.1`, port `0`) and verifies key dashboard asset routes return `200`. |
 | 🧪 **`scripts/runtime/validate-runtime-readiness-boundary.mjs`** | Runtime Boundary Validator | Node built-in validator that checks boundary config/doc existence, required scripts/files, workflow/manual-gate protections, worker/api/dashboard safety boundaries, and tracked secret-file constraints (T021). |
 | 🧪 **`scripts/runtime/validate-local-supabase-migration-rehearsal.mjs`** | Supabase Rehearsal Validator | Node built-in validator for T022 static schema-table checks, forbidden-pattern scans, tracked env/tmp guardrails, and workflow cron/schedule checks with no SQL execution. |
+| 🧪 **`scripts/runtime/local-db-compile-harness-stub.mjs`** | DB Compile Harness Stub | Node built-in disabled-by-default stub runner for T023 that reports `disabled/not executed` and never executes SQL, Docker, psql, Supabase CLI, or network calls. |
+| 🧪 **`scripts/runtime/validate-local-db-compile-harness.mjs`** | DB Compile Harness Validator | Node built-in validator for T023 that enforces disabled flags, scans stub safety patterns, executes stub for `executed=false` assertions, and checks env/tmp tracking constraints. |
 | 🧪 **`scripts/runtime/runtime-smoke.mjs`** | Smoke Validation | Runs local event/runtime validations, boundary checks, Supabase rehearsal checks, schema static checks, and credential checks with exit-code enforcement. |
 | 🧪 **`scripts/test-cloudflare-worker-local.mjs`** | Worker Local Test | Verifies the disabled-by-default event route and stubbed local readiness behavior. |
 | 🧪 **`docs/runtime/LOCAL_EVENT_BUFFER.md`** | Buffer Guide | Local-only JSONL buffer purpose, safety boundary, idempotency, and test instructions. |
@@ -73,6 +76,7 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧭 **`site/local-dashboard/data/sample-projection.json`** | Dashboard Sample Data | Deterministic metadata-only projection sample aligned to T018/T019 summary values. |
 | ⚙️ **`config/runtime-readiness-boundary.json`** | Runtime Boundary Policy | Machine-checkable policy config for local runtime readiness boundaries, required scripts/docs/files, and forbidden tracked files (T021). |
 | ⚙️ **`config/local-supabase-migration-rehearsal.json`** | Supabase Rehearsal Policy | Machine-checkable T022 policy config for local static migration rehearsal mode, expected migration structure, and forbidden actions. |
+| ⚙️ **`config/local-db-compile-harness.json`** | DB Compile Harness Policy | Machine-checkable T023 policy config for disabled harness mode (`enabled=false`, `execution_allowed_now=false`) and forbidden execution actions before explicit approval. |
 | 🗂️ **`reports/samples/local-supabase-migration-rehearsal.sample.json`** | Rehearsal Sample Manifest | Deterministic/sanitized static sample output for local Supabase migration rehearsal scans. |
 | 🧪 **`work-items/T020-static-local-dashboard/TASK.md`** | Work Item Task | Task scope, boundaries, and checklist for T020 static/private local dashboard implementation. |
 | 🧪 **`work-items/T020-static-local-dashboard/DECISIONS.md`** | Work Item Decisions | Captures implementation assumptions and local-only dashboard safety tradeoffs for T020. |
@@ -86,6 +90,10 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧪 **`work-items/T022-local-supabase-migration-rehearsal/DECISIONS.md`** | Work Item Decisions | Captures T022 static-only design choices and validator safety assumptions. |
 | 🧪 **`work-items/T022-local-supabase-migration-rehearsal/VALIDATION.md`** | Work Item Validation | Records required cleanup, baseline, and final validation command outcomes for T022. |
 | 🧪 **`work-items/T022-local-supabase-migration-rehearsal/FINAL_REPORT.md`** | Work Item Report | Final closeout report for T022 including safety confirmations and merge status. |
+| 🧪 **`work-items/T023-disabled-local-db-compile-harness-stub/TASK.md`** | Work Item Task | Task scope, boundaries, and deliverables for T023 disabled local DB compile harness stub implementation. |
+| 🧪 **`work-items/T023-disabled-local-db-compile-harness-stub/DECISIONS.md`** | Work Item Decisions | Captures implementation choices and disabled-by-default safety assumptions for T023. |
+| 🧪 **`work-items/T023-disabled-local-db-compile-harness-stub/VALIDATION.md`** | Work Item Validation | Records required audit/baseline/final validation command outcomes for T023. |
+| 🧪 **`work-items/T023-disabled-local-db-compile-harness-stub/FINAL_REPORT.md`** | Work Item Report | Final closeout report for T023 including safety confirmations and merge status. |
 | ⚙️ **`work-items/.gitkeep`** | Work Sandbox | Directory placeholder preserving workspace sandboxes for active task executions. |
 
 ---

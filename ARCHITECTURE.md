@@ -39,6 +39,7 @@ The SDK is structured into four core module boundaries:
 7.  **Read-only Projection Layer:** Builds deterministic local read models (`runs`, `events`, `approvals`, `tool_calls`, `risks`, `errors`, `summary`) from validated local buffer or export-bundle events.
 8.  **Localhost Read-only API Layer:** Exposes projection entities through localhost-only read-only HTTP endpoints for operator inspection (`GET /projection`, `/runs`, `/events`, and related slices).
 9.  **Local Supabase Migration Rehearsal Gate:** Performs static migration safety/readiness checks against SQL artifacts and policy config without running DB services or applying schema.
+10. **Local DB Compile Harness Stub Gate:** Provides a disabled-by-default contract/config/stub/validator proving compile harness execution is not allowed until explicit Control Tower approval.
 
 ---
 

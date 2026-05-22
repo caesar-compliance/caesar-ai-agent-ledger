@@ -59,3 +59,12 @@ This document maps all high-level technical, strategic, and governance decisions
     2. Add a Node built-in rehearsal validator that checks required migration/doc artifacts, expected table presence, forbidden SQL/connection patterns, tracked secret/tmp guardrails, and workflow cron absence without executing SQL.
     3. Extend runtime boundary and smoke validation to require the T022 rehearsal gate while keeping all execution paths local-only and non-persistent.
 *   **Rationale:** Introduces compile-gate readiness structure for future local DB validation work without running Supabase/psql/Docker or writing to any database.
+
+### [DEC-007] — 22 May 2026 — Disabled Local DB Compile Harness Stub Gate
+
+*   **Status:** Approved
+*   **Decisions:**
+    1. Add a dedicated local DB compile harness contract and machine-readable config with `harness_mode=disabled_stub_only`, `enabled=false`, and `execution_allowed_now=false`.
+    2. Add a Node built-in harness stub that validates disabled flags and reports structured `disabled/not executed` output with explicit `sql_executed=false`, `docker_invoked=false`, `psql_invoked=false`, `supabase_cli_invoked=false`, and `network_used=false`.
+    3. Add a Node built-in validator that enforces disabled config flags, scans stub script for obvious execution calls, executes the stub for non-execution assertions, and integrates checks into runtime boundary/rehearsal/smoke validations.
+*   **Rationale:** Establishes a safer contract for future local DB compile testing while preventing accidental execution before explicit Control Tower approval.

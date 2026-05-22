@@ -18,6 +18,8 @@
     "runtime:test:static-dashboard": "node scripts/runtime/test-static-local-dashboard.mjs",
     "runtime:validate:boundary": "node scripts/runtime/validate-runtime-readiness-boundary.mjs",
     "runtime:validate:supabase-rehearsal": "node scripts/runtime/validate-local-supabase-migration-rehearsal.mjs",
+    "runtime:db-compile-harness:stub": "node scripts/runtime/local-db-compile-harness-stub.mjs",
+    "runtime:validate:db-compile-harness": "node scripts/runtime/validate-local-db-compile-harness.mjs",
     "runtime:seed:dev": "node scripts/runtime/seed-dev-data.mjs",
     "runtime:smoke": "node scripts/runtime/runtime-smoke.mjs",
     "runtime:ingestion:dry-run": "node scripts/runtime/run-ingestion-dry-run.mjs",

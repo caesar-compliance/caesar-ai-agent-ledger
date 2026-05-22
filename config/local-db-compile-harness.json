@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "project_name": "Caesar AI Agent Ledger",
+  "package_name": "caesar-ai-agent-ledger",
+  "harness_mode": "disabled_stub_only",
+  "enabled": false,
+  "execution_allowed_now": false,
+  "requires_explicit_control_tower_approval": true,
+  "allowed_future_scope": [
+    "local_db_compile_only",
+    "local_schema_apply_only_after_approval",
+    "local_rollback_check_only_after_approval"
+  ],
+  "forbidden_now": [
+    "docker",
+    "psql",
+    "supabase_cli",
+    "remote_db_url",
+    "live_supabase_apply",
+    "database_writes",
+    "cloudflare_deploy",
+    "github_actions_run",
+    "cron_scheduler"
+  ],
+  "migration_sources": [
+    "ops/supabase/001_agent_ledger_runtime_schema.sql"
+  ],
+  "generated_report_churn_file": "reports/runtime-services-readiness.latest.json"
+}

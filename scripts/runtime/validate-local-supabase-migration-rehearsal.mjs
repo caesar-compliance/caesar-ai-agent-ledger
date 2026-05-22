@@ -9,6 +9,8 @@ const CONFIG_REL = "config/local-supabase-migration-rehearsal.json";
 const DOC_REL = "docs/runtime/LOCAL_SUPABASE_MIGRATION_REHEARSAL.md";
 const SQL_REL = "ops/supabase/001_agent_ledger_runtime_schema.sql";
 const BOUNDARY_SCRIPT_REL = "scripts/runtime/validate-runtime-readiness-boundary.mjs";
+const DB_COMPILE_DOC_REL = "docs/runtime/LOCAL_DB_COMPILE_HARNESS.md";
+const DB_COMPILE_CONFIG_REL = "config/local-db-compile-harness.json";
 const PACKAGE_JSON_REL = "package.json";
 const FORBIDDEN_TRACKED = [".env.runtime.local", ".env.cloudflare.local", ".env", ".env.local"];
 
@@ -25,6 +27,7 @@ const summary = {
     tracked_env_files: false,
     tracked_tmp: false,
     no_workflow_cron: false,
+    db_compile_harness_awareness: false,
   },
   details: {
     required_tables: {},
@@ -176,6 +179,42 @@ if (config) {
   assert(config.future_local_compile_gate_status?.enabled === false, "future local compile gate remains disabled");
   assert(config.future_local_compile_gate_status?.requires_explicit_control_tower_approval === true, "future local compile gate requires explicit Control Tower approval");
 }
+
+let dbCompileAwarenessOk = true;
+assert(fs.existsSync(path.join(ROOT, DB_COMPILE_DOC_REL)), `${DB_COMPILE_DOC_REL} exists`);
+if (!fs.existsSync(path.join(ROOT, DB_COMPILE_DOC_REL))) dbCompileAwarenessOk = false;
+
+const dbCompileConfigPath = path.join(ROOT, DB_COMPILE_CONFIG_REL);
+assert(fs.existsSync(dbCompileConfigPath), `${DB_COMPILE_CONFIG_REL} exists`);
+if (!fs.existsSync(dbCompileConfigPath)) {
+  dbCompileAwarenessOk = false;
+} else {
+  try {
+    const dbCompileConfig = JSON.parse(fs.readFileSync(dbCompileConfigPath, "utf8"));
+    assert(dbCompileConfig.enabled === false, "local DB compile harness enabled=false");
+    assert(dbCompileConfig.execution_allowed_now === false, "local DB compile harness execution_allowed_now=false");
+    if (dbCompileConfig.enabled !== false || dbCompileConfig.execution_allowed_now !== false) {
+      dbCompileAwarenessOk = false;
+    }
+  } catch (error) {
+    fail(`${DB_COMPILE_CONFIG_REL} parse failed: ${error.message}`);
+    dbCompileAwarenessOk = false;
+  }
+}
+
+if (fs.existsSync(packageJsonPath)) {
+  try {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+    const hasDbCompileValidatorScript = typeof packageJson?.scripts?.["runtime:validate:db-compile-harness"] === "string";
+    assert(hasDbCompileValidatorScript, "package.json includes runtime:validate:db-compile-harness script");
+    if (!hasDbCompileValidatorScript) dbCompileAwarenessOk = false;
+  } catch (error) {
+    fail(`package.json parse failed while checking T023 script: ${error.message}`);
+    dbCompileAwarenessOk = false;
+  }
+}
+
+summary.checks.db_compile_harness_awareness = dbCompileAwarenessOk;
 
 summary.ok = failures === 0;
 console.log(JSON.stringify(summary));

@@ -12,7 +12,7 @@ This SDK is part of the Caesar AI Governance Hub ecosystem at [caesar.no](https:
 
 ### 🚦 Project Status
 > [!NOTE]
-> This repository is currently in the **runtime scaffold / local Supabase migration rehearsal compile gate** stage. Local validation, the metadata-first event model, local JSONL event buffer, local export/import dry-run contract, read-only local event projection, localhost-only read-only API, static private local dashboard, machine-checkable runtime boundary validation, and local static Supabase migration rehearsal validation are in place; persistence and any live event writing remain future gated work.
+> This repository is currently in the **runtime scaffold / local Supabase rehearsal + disabled local DB compile harness stub gate** stage. Local validation, the metadata-first event model, local JSONL event buffer, local export/import dry-run contract, read-only local event projection, localhost-only read-only API, static private local dashboard, machine-checkable runtime boundary validation, local static Supabase migration rehearsal validation, and a disabled-by-default local DB compile harness stub are in place; persistence and any live event writing remain future gated work.
 
 ---
 
@@ -58,6 +58,7 @@ All runtime logs and transaction records produced by the SDK conform strictly to
 *   **[docs/runtime/STATIC_LOCAL_DASHBOARD.md](docs/runtime/STATIC_LOCAL_DASHBOARD.md)** — Static/private local dashboard contract and safety boundaries.
 *   **[docs/runtime/BACKEND_RUNTIME_READINESS_BOUNDARY.md](docs/runtime/BACKEND_RUNTIME_READINESS_BOUNDARY.md)** — Backend runtime readiness boundary, invariants, forbidden actions, and approval gates.
 *   **[docs/runtime/LOCAL_SUPABASE_MIGRATION_REHEARSAL.md](docs/runtime/LOCAL_SUPABASE_MIGRATION_REHEARSAL.md)** — Local-only static Supabase migration rehearsal boundary and compile-gate prerequisites (T022).
+*   **[docs/runtime/LOCAL_DB_COMPILE_HARNESS.md](docs/runtime/LOCAL_DB_COMPILE_HARNESS.md)** — Disabled-by-default local DB compile harness contract, stub behavior, and future approval prerequisites (T023).
 *   **[docs/RESEARCH_CONTEXT.md](docs/RESEARCH_CONTEXT.md)** — Functional domain research and strategic context.
 *   **[docs/DECISION_LOG.md](docs/DECISION_LOG.md)** — Architectural decision log history.
 *   **[src/event-buffer/](src/event-buffer/)** — Local-only validator and JSONL buffer implementation.
