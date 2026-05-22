@@ -12,7 +12,7 @@ This SDK is part of the Caesar AI Governance Hub ecosystem at [caesar.no](https:
 
 ### 🚦 Project Status
 > [!NOTE]
-> This repository is currently in the **runtime scaffold / local event buffer** stage. Local validation, the metadata-first event model, and a local JSONL event buffer are in place; persistence and any live event writing remain future gated work.
+> This repository is currently in the **runtime scaffold / local export-import dry-run** stage. Local validation, the metadata-first event model, local JSONL event buffer, and local export/import dry-run contract are in place; persistence and any live event writing remain future gated work.
 
 ---
 
@@ -52,6 +52,8 @@ All runtime logs and transaction records produced by the SDK conform strictly to
 *   **[NEXT_ACTIONS.md](NEXT_ACTIONS.md)** — Task execution lists and autonomous boundaries.
 *   **[docs/runtime/AGENT_EVENT_MODEL.md](docs/runtime/AGENT_EVENT_MODEL.md)** — Metadata-first event contract, IDs, risk levels, and retention rules.
 *   **[docs/runtime/LOCAL_EVENT_BUFFER.md](docs/runtime/LOCAL_EVENT_BUFFER.md)** — Local-only JSONL buffer behavior, validation, and test guidance.
+*   **[docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md](docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md)** — Local-only bundle contract and import dry-run mapping rules.
 *   **[docs/RESEARCH_CONTEXT.md](docs/RESEARCH_CONTEXT.md)** — Functional domain research and strategic context.
 *   **[docs/DECISION_LOG.md](docs/DECISION_LOG.md)** — Architectural decision log history.
 *   **[src/event-buffer/](src/event-buffer/)** — Local-only validator and JSONL buffer implementation.
+*   **[src/export-import/](src/export-import/)** — Local-only export bundle and import dry-run planner implementation.

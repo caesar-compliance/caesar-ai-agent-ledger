@@ -7,8 +7,8 @@ This document prioritizes upcoming development tasks and establishes execution b
 ## 🚦 Execution Boundaries
 
 ### 1. Prioritized Next Steps
-*   **Local Event Buffer:** Keep the local JSONL buffer, reusable validator, fixtures, and documentation aligned with metadata-first event capture.
-*   **Backend-ready import/export contract:** Outline the next read-only projection or import/export boundary for future gated persistence.
+*   **Local export/import dry-run:** Keep the local JSONL buffer + export bundle + import dry-run contract aligned with metadata-first event capture.
+*   **Read-only projection:** Build a local read-only projection over buffered/exported events as the next step after T017.
 
 ### 2. Safe Autonomous Tasks
 *   Adding comments and documentation files inside the planned SDK module structures.

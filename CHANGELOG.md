@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 22 May 2026
 
 ### Added
+- **Local event export/import contract (T017):** Added [docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md](docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md), local bundle tooling in `src/export-import/local-event-export-bundle.mjs`, and a fixture-driven dry-run test command `runtime:test:event-export-import`.
 - **Local event buffer v1:** Added a local-only JSONL buffer with append, read, summarize, and validate helpers, plus fixture-driven test coverage for duplicate idempotency skipping and raw-secret rejection.
 - **Agent event model contract:** Added [docs/runtime/AGENT_EVENT_MODEL.md](docs/runtime/AGENT_EVENT_MODEL.md) to define the metadata-first task/run/event relationship, IDs, event types, risk levels, approval model, retention rules, and the disabled-by-default `POST /events` boundary.
 - **Local event schema and fixtures:** Added [schemas/agent-ledger-event.schema.json](schemas/agent-ledger-event.schema.json) plus fixture examples for valid tool-call and approval events and one invalid raw-secret case.

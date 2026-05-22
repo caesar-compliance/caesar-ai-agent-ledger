@@ -1,8 +1,8 @@
 # Agent Ledger — Next development handoff
 
-**Frozen:** 22 May 2026 (T016 local event buffer)
-**Branch:** `task/T016-local-event-buffer`
-**Status:** Runtime scaffold now includes a local-only JSONL event buffer and reusable validation, still **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
+**Frozen:** 22 May 2026 (T017 local event export/import contract)
+**Branch:** `main`
+**Status:** Runtime scaffold now includes local-only JSONL buffering plus deterministic export bundle and import dry-run planning, still **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
 
 ## 1. Current state
 
@@ -16,6 +16,7 @@
 | Local credential / Worker tests | **Pass** (T014/T015 local validation) |
 | Local event model schema validation | **Pass** (T015) |
 | Local event buffer append/read/summarize/validate | **Pass** (T016) |
+| Local export/import bundle and dry-run mapping | **Pass** (T017) |
 
 **Note:** This is an **internal audit/runtime ledger**, not a public watcher site.
 
@@ -49,6 +50,7 @@ node scripts/runtime/check-service-credentials.mjs
 node scripts/runtime/validate-supabase-schema.mjs
 npm run runtime:validate:event-model
 npm run runtime:test:event-buffer
+npm run runtime:test:event-export-import
 node scripts/test-cloudflare-worker-local.mjs
 npm run runtime:smoke
 ```

@@ -24,6 +24,7 @@ Autonomous agents make decisions dynamically that can include writing to files, 
     *   Metadata-only payload summaries and redaction markers.
 *   **Local Validation:** Parse and validate fixtures against the event schema without network access.
 *   **Local Event Buffering:** Local-only JSONL append/read/summarize/validate buffer for redacted metadata. It stays offline and does not imply hosted persistence.
+*   **Local Export/Import Dry-Run:** Deterministic local export bundles (`manifest.json`, `events.jsonl`, `summary.json`, `validation-report.json`) and import dry-run planning mapped to runtime tables without Supabase writes.
 
 ### 5. Future Scope
 *   **Cryptographic Signing:** Local key pair verification signing every transaction record to ensure proof-of-state.
