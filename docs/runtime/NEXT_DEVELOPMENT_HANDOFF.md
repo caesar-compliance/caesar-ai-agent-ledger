@@ -1,8 +1,8 @@
 # Agent Ledger — Next development handoff
 
-**Frozen:** 22 May 2026 (T015 contract hardening)
-**Branch:** `task/T015-agent-event-model-validation-hardening`
-**Status:** Runtime scaffold ready — event model contract added, local validation hardened, still **not** activated (no CI schema apply, no Worker deploy).
+**Frozen:** 22 May 2026 (T016 local event buffer)
+**Branch:** `task/T016-local-event-buffer`
+**Status:** Runtime scaffold now includes a local-only JSONL event buffer and reusable validation, still **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
 
 ## 1. Current state
 
@@ -15,6 +15,7 @@
 | `POST /events` | **Disabled by default** (`ENABLE_AGENT_EVENTS=false`) |
 | Local credential / Worker tests | **Pass** (T014/T015 local validation) |
 | Local event model schema validation | **Pass** (T015) |
+| Local event buffer append/read/summarize/validate | **Pass** (T016) |
 
 **Note:** This is an **internal audit/runtime ledger**, not a public watcher site.
 
@@ -30,12 +31,13 @@
 
 ## 3. Exact next steps
 
-### Step 0 — Keep the event model contract local-only
+### Step 0 — Keep the event model contract and buffer local-only
 
 Maintain:
 
 - metadata-first event records
 - `run_id`, `event_id`, `idempotency_key`, `correlation_id`
+- local JSONL append/read/summarize/validate only
 - `POST /events` disabled by default
 - no raw secrets, no raw customer data, no raw full prompts by default
 
@@ -46,6 +48,7 @@ npm install
 node scripts/runtime/check-service-credentials.mjs
 node scripts/runtime/validate-supabase-schema.mjs
 npm run runtime:validate:event-model
+npm run runtime:test:event-buffer
 node scripts/test-cloudflare-worker-local.mjs
 npm run runtime:smoke
 ```
@@ -105,7 +108,7 @@ Internal **AI agent audit ledger**: tasks, runs, events, runtime_events for gove
 1. Work from `main` @ `5d7458c` or later.
 2. Read `docs/runtime/DEV_RUNTIME_ACTIVATION.md` and this file.
 3. Do not commit secrets or `.env.*.local`.
-4. Event model doc changes are safe to commit; infrastructure changes need Control Tower.
+4. Event model and local buffer doc changes are safe to commit; infrastructure changes need Control Tower.
 5. Final report required.
 
 ## References

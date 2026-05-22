@@ -12,6 +12,7 @@ Supabase: `caesar-agent-ledger-dev` (schema `agent_ledger`)
 | Schema apply (gated) | Yes — `APPLY_SUPABASE_SCHEMA=true npm run runtime:supabase:apply` |
 | Schema validate | Yes — `npm run runtime:validate:schema` |
 | Event model validate | Yes — `npm run runtime:validate:event-model` |
+| Local event buffer | Yes — `npm run runtime:test:event-buffer` |
 | DB health | Yes — `npm run runtime:db:health` |
 | Worker deploy | Yes — `ops/cloudflare-workers/agent-ledger-runtime` |
 | `/healthz` `/readyz` `/version` | Yes |

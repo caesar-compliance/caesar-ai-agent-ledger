@@ -26,7 +26,7 @@ The SDK is structured into four core module boundaries:
                            ▼
 ┌────────────────────────────────────────────────────────┐
 │                    Buffer & Exporter                   │
-│   (Buffers logs locally; exports JSONL / WebSocket)    │
+│   (Buffers logs locally in JSONL; exports stay gated)  │
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -34,7 +34,7 @@ The SDK is structured into four core module boundaries:
 2.  **Telemetry Collector:** Extracts metadata, system context, approvals, and risk markers while avoiding raw sensitive payloads by default.
 3.  **Event Contract Validator:** Validates required IDs, event types, redaction state, and metadata-only payload fixtures before any future persistence work.
 4.  **Signing Registry:** Integrates cryptographic signing. Using local private keys, it signs each log block in future gated phases.
-5.  **Buffer & Exporter:** Handles low-latency local buffering, writing redacted streams to disk as JSONL, and streaming over secure WebSockets when explicitly enabled later.
+5.  **Buffer & Exporter:** Handles low-latency local buffering through the local JSONL event buffer, writing redacted streams to disk and keeping WebSocket streaming future gated.
 
 ---
 

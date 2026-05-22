@@ -97,13 +97,13 @@ Risk is a routing hint, not a compliance verdict.
 - Keep records metadata-first.
 - Store summaries, not raw prompts, raw customer data, or raw secrets.
 - Redact tokens, keys, passwords, and private keys before any future persistence path is enabled.
-- If a local SDK or buffer writes JSONL later, it must remain local-only until explicitly approved.
+- The local SDK and local buffer write JSONL locally, and any hosted persistence must remain explicitly approved later.
 - Do not store raw full prompts by default unless a future task explicitly turns that on and documents the risk boundary.
 
 ## Writer rules
 
 - The Cloudflare Worker may write only when explicitly enabled.
-- The local SDK or buffer may write local JSONL later.
+- The local SDK and local buffer may write local JSONL for offline validation and review.
 - No raw secrets.
 - No raw customer data.
 - No raw full prompts by default.

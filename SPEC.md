@@ -23,7 +23,7 @@ Autonomous agents make decisions dynamically that can include writing to files, 
     *   Human approval states and policy checks.
     *   Metadata-only payload summaries and redaction markers.
 *   **Local Validation:** Parse and validate fixtures against the event schema without network access.
-*   **Local Event Buffering:** Lightweight file buffer saving redacted metadata locally in later phases.
+*   **Local Event Buffering:** Local-only JSONL append/read/summarize/validate buffer for redacted metadata. It stays offline and does not imply hosted persistence.
 
 ### 5. Future Scope
 *   **Cryptographic Signing:** Local key pair verification signing every transaction record to ensure proof-of-state.

@@ -7,14 +7,14 @@ This document prioritizes upcoming development tasks and establishes execution b
 ## 🚦 Execution Boundaries
 
 ### 1. Prioritized Next Steps
-*   **Agent Event Model Contract:** Keep the local schema, fixtures, and documentation aligned with metadata-first event capture.
-*   **Timeline Report Model:** Outline the HTML/Markdown layout summarizing chronological agent activities for audit reports.
+*   **Local Event Buffer:** Keep the local JSONL buffer, reusable validator, fixtures, and documentation aligned with metadata-first event capture.
+*   **Backend-ready import/export contract:** Outline the next read-only projection or import/export boundary for future gated persistence.
 
 ### 2. Safe Autonomous Tasks
 *   Adding comments and documentation files inside the planned SDK module structures.
 *   Improving code formatting and compliance with the `standards/` style guides.
 *   Preparing test datasets containing sample execution logs for validation rules tests.
-*   Extending local validators and fixtures without enabling live persistence.
+*   Extending local validators, buffer helpers, and fixtures without enabling live persistence.
 
 ### 3. Tasks Requiring Control Tower (Artem / ChatGPT) Approval
 *   Adding third-party dependencies (e.g., cryptography packages, framework libraries).

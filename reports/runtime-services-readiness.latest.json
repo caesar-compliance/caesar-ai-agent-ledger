@@ -1,6 +1,6 @@
 {
   "status": "ready_for_manual_worker_review",
-  "checked_at": "2026-05-22T16:25:52.518Z",
+  "checked_at": "2026-05-22T16:37:55.108Z",
   "account_allocation": "account_b",
   "supabase_key_mode": "new",
   "supabase_publishable_key_present": true,

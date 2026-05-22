@@ -10,6 +10,7 @@
     "runtime:supabase:apply": "node scripts/runtime/apply-supabase-schema.mjs",
     "runtime:validate:schema": "node scripts/runtime/validate-supabase-schema.mjs",
     "runtime:validate:event-model": "node scripts/runtime/validate-agent-event-schema.mjs",
+    "runtime:test:event-buffer": "node scripts/runtime/test-local-event-buffer.mjs",
     "runtime:seed:dev": "node scripts/runtime/seed-dev-data.mjs",
     "runtime:smoke": "node scripts/runtime/runtime-smoke.mjs",
     "runtime:ingestion:dry-run": "node scripts/runtime/run-ingestion-dry-run.mjs",

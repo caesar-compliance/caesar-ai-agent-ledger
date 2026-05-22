@@ -8,12 +8,12 @@ This document tracks the current active state, milestones, and boundaries for th
 
 *   **Repository Name:** `caesar-ai-agent-ledger`
 *   **Current Version:** `0.1.0`
-*   **Current Phase:** `runtime scaffold / event model contract`
+*   **Current Phase:** `runtime scaffold / local event buffer`
 *   **Status:** `active`
-*   **Latest Known Commit:** `3e27c99` (current main baseline before T015 closeout)
-*   **Latest Completed Task:** `Validated runtime scaffold and defined the agent event model contract.`
-*   **Active Work Item:** `T015-agent-event-model-validation-hardening`
-*   **Next Recommended Step:** `prepare gated POST /events persistence after Control Tower approval`
+*   **Latest Known Commit:** `pending final T016 closeout`
+*   **Latest Completed Task:** `Implemented a local-only JSONL event buffer with reusable validation and fixture-driven tests.`
+*   **Active Work Item:** `T016-local-event-buffer`
+*   **Next Recommended Step:** `prepare a backend-ready import/export contract or local read-only projection after Control Tower approval`
 
 ---
 
