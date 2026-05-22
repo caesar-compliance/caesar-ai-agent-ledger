@@ -8,12 +8,12 @@ This document tracks the current active state, milestones, and boundaries for th
 
 *   **Repository Name:** `caesar-ai-agent-ledger`
 *   **Current Version:** `0.1.0`
-*   **Current Phase:** `runtime scaffold / read-only local projection`
+*   **Current Phase:** `runtime scaffold / localhost read-only API`
 *   **Status:** `active`
-*   **Latest Known Commit:** `pending final T018 closeout`
-*   **Latest Completed Task:** `Implemented a read-only local event projection over local buffer and export-bundle event sources with deterministic filtering and metadata-only output.`
-*   **Active Work Item:** `T018-read-only-local-event-projection`
-*   **Next Recommended Step:** `add either a localhost-only read-only projection API or a static local dashboard over projection outputs`
+*   **Latest Known Commit:** `pending final T019 closeout`
+*   **Latest Completed Task:** `Implemented a localhost-only read-only API over the T018 projection with metadata-only responses, GET-only routes, and localhost bind safety.`
+*   **Active Work Item:** `T019-localhost-read-only-api`
+*   **Next Recommended Step:** `build a static/private local dashboard over projection and localhost API outputs`
 
 ---
 

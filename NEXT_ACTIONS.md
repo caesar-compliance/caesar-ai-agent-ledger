@@ -7,8 +7,8 @@ This document prioritizes upcoming development tasks and establishes execution b
 ## 🚦 Execution Boundaries
 
 ### 1. Prioritized Next Steps
-*   **Read-only projection hardening:** Keep local projection behavior deterministic and metadata-only across local buffer and export-bundle inputs.
-*   **Next product view:** Implement either a localhost-only read-only API over the projection or a static local dashboard over projection output.
+*   **Read-only API hardening:** Keep localhost API behavior deterministic, metadata-only, and read-only across supported projection sources.
+*   **Next product view:** Build a static/private local dashboard over projection output and the localhost read-only API.
 
 ### 2. Safe Autonomous Tasks
 *   Adding comments and documentation files inside the planned SDK module structures.

@@ -9,6 +9,7 @@ const COMMANDS = [
   ["node", ["scripts/runtime/test-local-event-buffer.mjs"]],
   ["node", ["scripts/runtime/test-local-event-export-import.mjs"]],
   ["node", ["scripts/runtime/test-read-only-event-projection.mjs"]],
+  ["node", ["scripts/runtime/test-localhost-read-only-api.mjs"]],
   ["node", ["scripts/runtime/validate-supabase-schema.mjs"]],
   ["node", ["scripts/runtime/check-service-credentials.mjs"]],
 ];

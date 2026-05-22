@@ -13,6 +13,7 @@
     "runtime:test:event-buffer": "node scripts/runtime/test-local-event-buffer.mjs",
     "runtime:test:event-export-import": "node scripts/runtime/test-local-event-export-import.mjs",
     "runtime:test:event-projection": "node scripts/runtime/test-read-only-event-projection.mjs",
+    "runtime:test:localhost-api": "node scripts/runtime/test-localhost-read-only-api.mjs",
     "runtime:seed:dev": "node scripts/runtime/seed-dev-data.mjs",
     "runtime:smoke": "node scripts/runtime/runtime-smoke.mjs",
     "runtime:ingestion:dry-run": "node scripts/runtime/run-ingestion-dry-run.mjs",

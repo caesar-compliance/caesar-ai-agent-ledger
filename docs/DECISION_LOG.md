@@ -32,3 +32,12 @@ This document maps all high-level technical, strategic, and governance decisions
     2. Enforce schema validation, forbidden-content checks, and idempotency-key deduplication before applying optional filters (`run_id`, `event_type`, `risk_level`).
     3. Keep projection strictly offline and non-persistent: no Supabase writes, no Worker deploy/use requirement, no network, and no change to disabled-by-default `POST /events`.
 *   **Rationale:** Improves local product-data inspection quality while preserving current runtime safety gates and no-ingestion boundaries.
+
+### [DEC-004] — 22 May 2026 — Localhost-only Read-only API over Projection
+
+*   **Status:** Approved
+*   **Decisions:**
+    1. Add a Node built-in localhost-only HTTP API layer exposing projection views via read-only `GET` endpoints only.
+    2. Keep the API bound to `127.0.0.1` by default and reject `0.0.0.0` unless an explicit unsafe override is passed in code.
+    3. Keep route responses metadata-only and JSON-only, with stable error envelopes and no write operations.
+*   **Rationale:** Enables local operator inspection tooling while preserving offline/no-write safety boundaries and existing disabled ingestion defaults.

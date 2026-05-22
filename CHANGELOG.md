@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 22 May 2026
 
 ### Added
+- **Localhost read-only API (T019):** Added [docs/runtime/LOCALHOST_READ_ONLY_API.md](docs/runtime/LOCALHOST_READ_ONLY_API.md), `src/local-api/read-only-api-server.mjs`, and `runtime:test:localhost-api` to expose metadata-only projection views through local `GET` endpoints bound to `127.0.0.1` by default, with `POST` rejected (`405`) and unknown routes returning `404`.
 - **Read-only local event projection (T018):** Added [docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md](docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md), `src/projection/read-only-event-projection.mjs`, and `runtime:test:event-projection` for deterministic metadata-only projections from local buffer or export bundles.
 - **Local event export/import contract (T017):** Added [docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md](docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md), local bundle tooling in `src/export-import/local-event-export-bundle.mjs`, and a fixture-driven dry-run test command `runtime:test:event-export-import`.
 - **Local event buffer v1:** Added a local-only JSONL buffer with append, read, summarize, and validate helpers, plus fixture-driven test coverage for duplicate idempotency skipping and raw-secret rejection.

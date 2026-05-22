@@ -12,7 +12,7 @@ This SDK is part of the Caesar AI Governance Hub ecosystem at [caesar.no](https:
 
 ### 🚦 Project Status
 > [!NOTE]
-> This repository is currently in the **runtime scaffold / local read-only projection** stage. Local validation, the metadata-first event model, local JSONL event buffer, local export/import dry-run contract, and read-only local event projection are in place; persistence and any live event writing remain future gated work.
+> This repository is currently in the **runtime scaffold / localhost read-only API** stage. Local validation, the metadata-first event model, local JSONL event buffer, local export/import dry-run contract, read-only local event projection, and a localhost-only read-only API are in place; persistence and any live event writing remain future gated work.
 
 ---
 
@@ -54,8 +54,10 @@ All runtime logs and transaction records produced by the SDK conform strictly to
 *   **[docs/runtime/LOCAL_EVENT_BUFFER.md](docs/runtime/LOCAL_EVENT_BUFFER.md)** — Local-only JSONL buffer behavior, validation, and test guidance.
 *   **[docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md](docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md)** — Local-only bundle contract and import dry-run mapping rules.
 *   **[docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md](docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md)** — Read-only projection contract for local buffer/exported events.
+*   **[docs/runtime/LOCALHOST_READ_ONLY_API.md](docs/runtime/LOCALHOST_READ_ONLY_API.md)** — Localhost-only read-only API contract and safety boundaries.
 *   **[docs/RESEARCH_CONTEXT.md](docs/RESEARCH_CONTEXT.md)** — Functional domain research and strategic context.
 *   **[docs/DECISION_LOG.md](docs/DECISION_LOG.md)** — Architectural decision log history.
 *   **[src/event-buffer/](src/event-buffer/)** — Local-only validator and JSONL buffer implementation.
 *   **[src/export-import/](src/export-import/)** — Local-only export bundle and import dry-run planner implementation.
 *   **[src/projection/](src/projection/)** — Local-only read-only projection implementation over validated events.
+*   **[src/local-api/](src/local-api/)** — Localhost-only read-only HTTP API over the projection output.
