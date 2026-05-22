@@ -8,12 +8,12 @@ This document tracks the current active state, milestones, and boundaries for th
 
 *   **Repository Name:** `caesar-ai-agent-ledger`
 *   **Current Version:** `0.1.0`
-*   **Current Phase:** `runtime scaffold / localhost read-only API`
+*   **Current Phase:** `runtime scaffold / static local dashboard`
 *   **Status:** `active`
-*   **Latest Known Commit:** `pending final T019 closeout`
-*   **Latest Completed Task:** `Implemented a localhost-only read-only API over the T018 projection with metadata-only responses, GET-only routes, and localhost bind safety.`
-*   **Active Work Item:** `T019-localhost-read-only-api`
-*   **Next Recommended Step:** `build a static/private local dashboard over projection and localhost API outputs`
+*   **Latest Known Commit:** `pending final T020 closeout`
+*   **Latest Completed Task:** `Implemented a static/private local dashboard over read-only projection/API-compatible JSON with metadata-only sections, filters, and local-only validation.`
+*   **Active Work Item:** `T020-static-local-dashboard`
+*   **Next Recommended Step:** `backend runtime readiness boundary hardening and local Supabase migration rehearsal/compile gate (no live apply)`
 
 ---
 

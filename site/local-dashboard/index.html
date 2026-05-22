@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Caesar AI Agent Ledger — Local Dashboard</title>
+    <link rel="stylesheet" href="./assets/dashboard.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Caesar AI Agent Ledger</h1>
+        <p class="subtitle">Local Dashboard</p>
+      </div>
+      <div class="badges">
+        <span class="badge">version <span id="pkg-version">0.1.0</span></span>
+        <span class="badge badge-safe">local</span>
+        <span class="badge badge-safe">private</span>
+        <span class="badge badge-safe">read-only</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="notice">
+        Local/private dashboard. Metadata-only inspection. No external network resources.
+      </section>
+
+      <section class="filters card">
+        <h2>Filters</h2>
+        <div class="filter-grid">
+          <label>
+            Event type
+            <select id="filter-event-type"></select>
+          </label>
+          <label>
+            Risk level
+            <select id="filter-risk-level"></select>
+          </label>
+          <label>
+            Run ID / Search
+            <input id="filter-search" type="search" placeholder="run id or event id" />
+          </label>
+        </div>
+      </section>
+
+      <section id="summary" class="summary-grid"></section>
+
+      <section class="card">
+        <h2>Risks</h2>
+        <div id="risks"></div>
+      </section>
+
+      <section class="card">
+        <h2>Runs</h2>
+        <div id="runs"></div>
+      </section>
+
+      <section class="card">
+        <h2>Events</h2>
+        <div id="events"></div>
+      </section>
+
+      <section class="card">
+        <h2>Approvals</h2>
+        <div id="approvals"></div>
+      </section>
+
+      <section class="card">
+        <h2>Tool Calls</h2>
+        <div id="tool-calls"></div>
+      </section>
+
+      <section class="card">
+        <h2>Errors</h2>
+        <div id="errors"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/dashboard.js"></script>
+  </body>
+</html>

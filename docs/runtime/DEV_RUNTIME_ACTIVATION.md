@@ -16,6 +16,8 @@ Supabase: `caesar-agent-ledger-dev` (schema `agent_ledger`)
 | Local event export/import dry-run | Yes — `npm run runtime:test:event-export-import` |
 | Read-only local event projection | Yes — `npm run runtime:test:event-projection` |
 | Localhost read-only projection API | Yes — `npm run runtime:test:localhost-api` |
+| Static/private local dashboard validate | Yes — `npm run runtime:validate:static-dashboard` |
+| Static/private local dashboard localhost test | Yes — `npm run runtime:test:static-dashboard` |
 | DB health | Yes — `npm run runtime:db:health` |
 | Worker deploy | Yes — `ops/cloudflare-workers/agent-ledger-runtime` |
 | `/healthz` `/readyz` `/version` | Yes |
@@ -37,9 +39,11 @@ Supabase: `caesar-agent-ledger-dev` (schema `agent_ledger`)
 4. `npm run runtime:test:event-export-import`
 5. `npm run runtime:test:event-projection`
 6. `npm run runtime:test:localhost-api`
-7. `node scripts/runtime/check-service-credentials.mjs`
-8. `npm run test:worker:local`
-8. CI: validation only, then `apply_schema=YES`, then `deploy_worker=YES`
+7. `npm run runtime:validate:static-dashboard`
+8. `npm run runtime:test:static-dashboard`
+9. `node scripts/runtime/check-service-credentials.mjs`
+10. `npm run test:worker:local`
+11. CI: validation only, then `apply_schema=YES`, then `deploy_worker=YES`
 
 ## Rollback
 

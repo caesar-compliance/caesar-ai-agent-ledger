@@ -7,8 +7,8 @@ This document prioritizes upcoming development tasks and establishes execution b
 ## 🚦 Execution Boundaries
 
 ### 1. Prioritized Next Steps
-*   **Read-only API hardening:** Keep localhost API behavior deterministic, metadata-only, and read-only across supported projection sources.
-*   **Next product view:** Build a static/private local dashboard over projection output and the localhost read-only API.
+*   **Runtime boundary hardening:** Keep localhost API and static dashboard behavior deterministic, metadata-only, and read-only across supported projection sources.
+*   **Next backend gate:** Add local Supabase migration rehearsal/compile validation gate without live schema apply.
 
 ### 2. Safe Autonomous Tasks
 *   Adding comments and documentation files inside the planned SDK module structures.

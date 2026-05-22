@@ -20,6 +20,7 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 📚 **`docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md`** | Export/Import Contract | Defines local-only bundle layout, validation rules, import dry-run behavior, and strict safety boundaries for T017. |
 | 📚 **`docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md`** | Projection Contract | Defines local-only read-only projection input sources, output entities, sorting/filtering rules, deduplication, and safety boundaries for T018. |
 | 📚 **`docs/runtime/LOCALHOST_READ_ONLY_API.md`** | Local API Contract | Defines localhost-only read-only API endpoints, filters, response/error shapes, and safety boundaries for T019. |
+| 📚 **`docs/runtime/STATIC_LOCAL_DASHBOARD.md`** | Dashboard Contract | Defines static/private local dashboard purpose, non-goals, data-source model, sections, filters, and explicit safety boundaries for T020. |
 | 🔬 **`docs/RESEARCH_CONTEXT.md`** | Domain Research | Ingests strategic requirements, user personas, and target scopes compiled from the ecosystem. |
 | ⚖️ **`docs/DECISION_LOG.md`** | Decision Log | Records chronological technical, strategic, and governance decisions. |
 | 🧪 **`schemas/agent-ledger-event.schema.json`** | Event Schema | Local JSON Schema draft 2020-12 contract for metadata-first agent events. |
@@ -36,6 +37,8 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧪 **`scripts/runtime/test-local-event-export-import.mjs`** | Export/Import Test | Local-only test for bundle build, bundle validation, import dry-run mapping, and invalid-event rejection. |
 | 🧪 **`scripts/runtime/test-read-only-event-projection.mjs`** | Projection Test | Local-only fixture test that validates projection behavior for local buffer and local export-bundle sources with filter and redaction checks. |
 | 🧪 **`scripts/runtime/test-localhost-read-only-api.mjs`** | Local API Test | Localhost-only test that starts the read-only API on `127.0.0.1` ephemeral port and validates routes, filters, `405`, `404`, and secret-safety checks. |
+| 🧪 **`scripts/runtime/validate-static-local-dashboard.mjs`** | Dashboard Validator | Static validator for dashboard files, external-resource bans, secret-like scan checks, and deterministic sample summary assertions. |
+| 🧪 **`scripts/runtime/test-static-local-dashboard.mjs`** | Dashboard Localhost Test | Starts a localhost-only static file server (`127.0.0.1`, port `0`) and verifies key dashboard asset routes return `200`. |
 | 🧪 **`scripts/runtime/runtime-smoke.mjs`** | Smoke Validation | Runs local schema, event-model, and credential checks with exit-code enforcement. |
 | 🧪 **`scripts/test-cloudflare-worker-local.mjs`** | Worker Local Test | Verifies the disabled-by-default event route and stubbed local readiness behavior. |
 | 🧪 **`docs/runtime/LOCAL_EVENT_BUFFER.md`** | Buffer Guide | Local-only JSONL buffer purpose, safety boundary, idempotency, and test instructions. |
@@ -60,6 +63,14 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🧪 **`work-items/T019-localhost-read-only-api/VALIDATION.md`** | Work Item Validation | Records required validation commands and outcomes for T019. |
 | 🧪 **`work-items/T019-localhost-read-only-api/FINAL_REPORT.md`** | Work Item Report | Final closeout report for T019 localhost read-only API implementation. |
 | 🗂️ **`reports/runtime-services-readiness.latest.json`** | Runtime Readiness Report | Generated readiness snapshot from local credential validation; contains metadata only. |
+| 🧭 **`site/local-dashboard/index.html`** | Dashboard Entry | Static local dashboard shell for metadata-only runtime inspection sections. |
+| 🧭 **`site/local-dashboard/assets/dashboard.css`** | Dashboard Styles | Local-only CSS styling for cards, tables, filters, badges, and responsive desktop/laptop layout. |
+| 🧭 **`site/local-dashboard/assets/dashboard.js`** | Dashboard Renderer | Client-side local renderer for sample projection loading, summary cards, section tables, and filters. |
+| 🧭 **`site/local-dashboard/data/sample-projection.json`** | Dashboard Sample Data | Deterministic metadata-only projection sample aligned to T018/T019 summary values. |
+| 🧪 **`work-items/T020-static-local-dashboard/TASK.md`** | Work Item Task | Task scope, boundaries, and checklist for T020 static/private local dashboard implementation. |
+| 🧪 **`work-items/T020-static-local-dashboard/DECISIONS.md`** | Work Item Decisions | Captures implementation assumptions and local-only dashboard safety tradeoffs for T020. |
+| 🧪 **`work-items/T020-static-local-dashboard/VALIDATION.md`** | Work Item Validation | Records required validation commands and outcomes for T020. |
+| 🧪 **`work-items/T020-static-local-dashboard/FINAL_REPORT.md`** | Work Item Report | Final closeout report for T020 static/private local dashboard implementation. |
 | ⚙️ **`work-items/.gitkeep`** | Work Sandbox | Directory placeholder preserving workspace sandboxes for active task executions. |
 
 ---

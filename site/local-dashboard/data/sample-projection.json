@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-05-22T12:02:00.000Z",
+  "source_type": "events_array",
+  "source_ref": "t020-static-sample",
+  "package_name": "caesar-ai-agent-ledger",
+  "package_version": "0.1.0",
+  "summary": {
+    "total_events": 2,
+    "total_runs": 1,
+    "total_approvals": 1,
+    "total_tool_calls": 1,
+    "total_errors": 0,
+    "counts_by_event_type": {
+      "approval_granted": 1,
+      "tool_call_requested": 1
+    },
+    "counts_by_risk_level": {
+      "high": 1,
+      "medium": 1
+    },
+    "earliest_occurred_at": "2026-05-22T12:00:00.000Z",
+    "latest_occurred_at": "2026-05-22T12:01:00.000Z"
+  },
+  "runs": [
+    {
+      "run_id": "run-T015-001",
+      "event_count": 2,
+      "first_event_at": "2026-05-22T12:00:00.000Z",
+      "last_event_at": "2026-05-22T12:01:00.000Z",
+      "highest_risk_level": "high",
+      "event_types": ["approval_granted", "tool_call_requested"],
+      "approval_count": 1,
+      "error_count": 0
+    }
+  ],
+  "events": [
+    {
+      "task_id": "T015",
+      "run_id": "run-T015-001",
+      "event_id": "evt-T015-0001",
+      "parent_event_id": null,
+      "idempotency_key": "idem-T015-0001",
+      "correlation_id": "corr-T015-001",
+      "event_type": "tool_call_requested",
+      "risk_level": "medium",
+      "occurred_at": "2026-05-22T12:00:00.000Z",
+      "source_kind": "sdk",
+      "source_name": "caesar-agent-ledger-js",
+      "source_version": "0.1.0",
+      "source_environment": "local-dev",
+      "metadata_kind": "tool_call",
+      "metadata_summary": "Tool request metadata only",
+      "metadata_labels_count": 2,
+      "metadata_references_count": 0,
+      "metadata_contains_sensitive_data": false,
+      "redaction_policy": "metadata_only_default",
+      "redaction_applied": true,
+      "raw_prompt_captured": false,
+      "raw_customer_data_captured": false,
+      "fields_redacted_count": 1
+    },
+    {
+      "task_id": "T015",
+      "run_id": "run-T015-001",
+      "event_id": "evt-T015-0002",
+      "parent_event_id": "evt-T015-0001",
+      "idempotency_key": "idem-T015-0002",
+      "correlation_id": "corr-T015-001",
+      "event_type": "approval_granted",
+      "risk_level": "high",
+      "occurred_at": "2026-05-22T12:01:00.000Z",
+      "source_kind": "sdk",
+      "source_name": "caesar-agent-ledger-js",
+      "source_version": "0.1.0",
+      "source_environment": "local-dev",
+      "metadata_kind": "approval",
+      "metadata_summary": "Approval metadata only",
+      "metadata_labels_count": 1,
+      "metadata_references_count": 0,
+      "metadata_contains_sensitive_data": false,
+      "redaction_policy": "metadata_only_default",
+      "redaction_applied": true,
+      "raw_prompt_captured": false,
+      "raw_customer_data_captured": false,
+      "fields_redacted_count": 0
+    }
+  ],
+  "approvals": [
+    {
+      "run_id": "run-T015-001",
+      "event_id": "evt-T015-0002",
+      "event_type": "approval_granted",
+      "risk_level": "high",
+      "occurred_at": "2026-05-22T12:01:00.000Z",
+      "metadata_summary": "Approval metadata only"
+    }
+  ],
+  "tool_calls": [
+    {
+      "run_id": "run-T015-001",
+      "event_id": "evt-T015-0001",
+      "event_type": "tool_call_requested",
+      "risk_level": "medium",
+      "occurred_at": "2026-05-22T12:00:00.000Z",
+      "metadata_summary": "Tool request metadata only"
+    }
+  ],
+  "risks": [
+    {
+      "run_id": "run-T015-001",
+      "event_id": "evt-T015-0002",
+      "event_type": "approval_granted",
+      "risk_level": "high",
+      "occurred_at": "2026-05-22T12:01:00.000Z",
+      "metadata_summary": "Approval metadata only"
+    }
+  ],
+  "errors": []
+}
