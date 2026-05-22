@@ -16,8 +16,21 @@ This is a living registry of all files currently tracked in the `caesar-ai-agent
 | 🗃️ **`REPO_INVENTORY.md`** | Workspace Registry | This file; provides a continuous, machine-readable index mapping files to functional roles. |
 | 🚦 **`PROJECT_STATE.md`** | Project State | Tracks active developmental phase, metadata, boundaries, active tasks, and milestones. |
 | 🤖 **`NEXT_ACTIONS.md`** | Next Actions | Prioritizes upcoming tasks and establishes boundaries for autonomous agent executions. |
+| 📚 **`docs/runtime/AGENT_EVENT_MODEL.md`** | Event Contract | Defines the metadata-first task/run/event contract, IDs, risk levels, retention rules, and disabled-by-default event ingestion boundary. |
 | 🔬 **`docs/RESEARCH_CONTEXT.md`** | Domain Research | Ingests strategic requirements, user personas, and target scopes compiled from the ecosystem. |
 | ⚖️ **`docs/DECISION_LOG.md`** | Decision Log | Records chronological technical, strategic, and governance decisions. |
+| 🧪 **`schemas/agent-ledger-event.schema.json`** | Event Schema | Local JSON Schema draft 2020-12 contract for metadata-first agent events. |
+| 🧪 **`fixtures/events/valid-tool-call-requested.json`** | Event Fixture | Valid metadata-only tool-call request example used by local validation. |
+| 🧪 **`fixtures/events/valid-approval-granted.json`** | Event Fixture | Valid approval-granted example with parent-event linkage and no raw payloads. |
+| 🧪 **`fixtures/events/invalid-raw-secret.json`** | Event Fixture | Negative test fixture that intentionally includes forbidden raw secret content. |
+| 🧪 **`scripts/runtime/validate-agent-event-schema.mjs`** | Local Validator | Self-contained schema/fixture validator for the agent event model. |
+| 🧪 **`scripts/runtime/runtime-smoke.mjs`** | Smoke Validation | Runs local schema, event-model, and credential checks with exit-code enforcement. |
+| 🧪 **`scripts/test-cloudflare-worker-local.mjs`** | Worker Local Test | Verifies the disabled-by-default event route and stubbed local readiness behavior. |
+| 🧪 **`work-items/T015-agent-event-model-validation-hardening/TASK.md`** | Work Item Task | Task scope, boundaries, and checklist for the T015 event-model hardening work. |
+| 🧪 **`work-items/T015-agent-event-model-validation-hardening/DECISIONS.md`** | Work Item Decisions | Captures local implementation assumptions and tradeoffs for T015. |
+| 🧪 **`work-items/T015-agent-event-model-validation-hardening/VALIDATION.md`** | Work Item Validation | Records exact local validation commands and results for T015. |
+| 🧪 **`work-items/T015-agent-event-model-validation-hardening/FINAL_REPORT.md`** | Work Item Report | Final closeout report for T015, including validation and merge state. |
+| 🗂️ **`reports/runtime-services-readiness.latest.json`** | Runtime Readiness Report | Generated readiness snapshot from local credential validation; contains metadata only. |
 | ⚙️ **`work-items/.gitkeep`** | Work Sandbox | Directory placeholder preserving workspace sandboxes for active task executions. |
 
 ---

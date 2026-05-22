@@ -8,12 +8,12 @@ This document tracks the current active state, milestones, and boundaries for th
 
 *   **Repository Name:** `caesar-ai-agent-ledger`
 *   **Current Version:** `0.1.0`
-*   **Current Phase:** `repository foundation`
+*   **Current Phase:** `runtime scaffold / event model contract`
 *   **Status:** `active`
-*   **Latest Known Commit:** `9c50763` (Before bootstrapping task)
-*   **Latest Completed Task:** `Initialized professional repository foundation.`
-*   **Active Work Item:** `none`
-*   **Next Recommended Step:** `define agent event format and timeline report model`
+*   **Latest Known Commit:** `3e27c99` (current main baseline before T015 closeout)
+*   **Latest Completed Task:** `Validated runtime scaffold and defined the agent event model contract.`
+*   **Active Work Item:** `T015-agent-event-model-validation-hardening`
+*   **Next Recommended Step:** `prepare gated POST /events persistence after Control Tower approval`
 
 ---
 

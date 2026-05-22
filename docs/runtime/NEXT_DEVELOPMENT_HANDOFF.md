@@ -1,8 +1,8 @@
 # Agent Ledger — Next development handoff
 
-**Frozen:** 22 May 2026 (T014 closeout)  
-**Branch:** `main` @ `5d7458c`  
-**Status:** Runtime scaffold ready — **not** activated (no CI schema apply, no Worker deploy).
+**Frozen:** 22 May 2026 (T015 contract hardening)
+**Branch:** `task/T015-agent-event-model-validation-hardening`
+**Status:** Runtime scaffold ready — event model contract added, local validation hardened, still **not** activated (no CI schema apply, no Worker deploy).
 
 ## 1. Current state
 
@@ -13,7 +13,8 @@
 | Cloudflare Worker deployed | **No** |
 | UptimeRobot Worker monitor | **Disabled** |
 | `POST /events` | **Disabled by default** (`ENABLE_AGENT_EVENTS=false`) |
-| Local credential / Worker tests | **Pass** (T014) |
+| Local credential / Worker tests | **Pass** (T014/T015 local validation) |
+| Local event model schema validation | **Pass** (T015) |
 
 **Note:** This is an **internal audit/runtime ledger**, not a public watcher site.
 
@@ -29,14 +30,14 @@
 
 ## 3. Exact next steps
 
-### Step 0 — Clarify event model (product, before heavy code)
+### Step 0 — Keep the event model contract local-only
 
-Define and document:
+Maintain:
 
-- Task / run / event types
-- Idempotency and correlation IDs
-- Who may write events (Worker + optional local SDK)
-- Retention and PII rules
+- metadata-first event records
+- `run_id`, `event_id`, `idempotency_key`, `correlation_id`
+- `POST /events` disabled by default
+- no raw secrets, no raw customer data, no raw full prompts by default
 
 ### Step 1 — Local validation
 
@@ -44,6 +45,7 @@ Define and document:
 npm install
 node scripts/runtime/check-service-credentials.mjs
 node scripts/runtime/validate-supabase-schema.mjs
+npm run runtime:validate:event-model
 node scripts/test-cloudflare-worker-local.mjs
 npm run runtime:smoke
 ```

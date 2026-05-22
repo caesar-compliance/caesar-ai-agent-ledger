@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "task_id": "T015",
+  "event_id": "evt-tool-call-requested-001",
+  "run_id": "run-T015-001",
+  "idempotency_key": "idem-run-T015-001-tool-call-requested",
+  "correlation_id": "corr-run-T015-001",
+  "event_type": "tool_call_requested",
+  "risk_level": "medium",
+  "occurred_at": "2026-05-22T12:00:00.000Z",
+  "source": {
+    "kind": "local_sdk",
+    "name": "fixture-generator",
+    "version": "0.1.0",
+    "environment": "local"
+  },
+  "payload_metadata_json": {
+    "kind": "tool_call_metadata",
+    "summary": "Tool call requested for a metadata-only local validation flow.",
+    "labels": ["metadata-only", "tool-call", "validation"],
+    "counts": {
+      "arguments": 2
+    },
+    "contains_sensitive_data": false,
+    "references": ["task:T015"]
+  },
+  "redaction": {
+    "policy": "metadata_only",
+    "applied": true,
+    "raw_prompt_captured": false,
+    "raw_customer_data_captured": false,
+    "raw_secret_captured": false,
+    "fields_redacted": ["prompt", "tool_arguments"],
+    "notes": "Metadata-only fixture for local schema validation."
+  }
+}

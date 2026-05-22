@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caesar.ai/schemas/agent-ledger-event.schema.json",
+  "title": "Caesar AI Agent Ledger Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "run_id",
+    "idempotency_key",
+    "correlation_id",
+    "event_type",
+    "risk_level",
+    "occurred_at",
+    "source",
+    "payload_metadata_json",
+    "redaction"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "run_started",
+        "run_completed",
+        "prompt_received",
+        "tool_call_requested",
+        "tool_call_completed",
+        "approval_requested",
+        "approval_granted",
+        "approval_denied",
+        "policy_check",
+        "file_write",
+        "command_execution",
+        "external_request_planned",
+        "external_request_executed",
+        "error"
+      ]
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "name"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["local_sdk", "worker", "buffer"]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "payload_metadata_json": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "summary", "contains_sensitive_data"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "run_metadata",
+            "prompt_metadata",
+            "tool_call_metadata",
+            "approval_metadata",
+            "policy_metadata",
+            "file_write_metadata",
+            "command_execution_metadata",
+            "external_request_metadata",
+            "error_metadata"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "contains_sensitive_data": {
+          "type": "boolean",
+          "const": false
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "applied",
+        "raw_prompt_captured",
+        "raw_customer_data_captured",
+        "raw_secret_captured",
+        "fields_redacted"
+      ],
+      "properties": {
+        "policy": {
+          "type": "string",
+          "enum": ["metadata_only", "redacted_summary", "local_buffer_only"]
+        },
+        "applied": {
+          "type": "boolean",
+          "const": true
+        },
+        "raw_prompt_captured": {
+          "type": "boolean",
+          "const": false
+        },
+        "raw_customer_data_captured": {
+          "type": "boolean",
+          "const": false
+        },
+        "raw_secret_captured": {
+          "type": "boolean",
+          "const": false
+        },
+        "fields_redacted": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

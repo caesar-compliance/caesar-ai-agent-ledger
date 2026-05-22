@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.1.0] - 19 May 2026
+## [0.1.0] - 22 May 2026
 
 ### Added
+- **Agent event model contract:** Added [docs/runtime/AGENT_EVENT_MODEL.md](docs/runtime/AGENT_EVENT_MODEL.md) to define the metadata-first task/run/event relationship, IDs, event types, risk levels, approval model, retention rules, and the disabled-by-default `POST /events` boundary.
+- **Local event schema and fixtures:** Added [schemas/agent-ledger-event.schema.json](schemas/agent-ledger-event.schema.json) plus fixture examples for valid tool-call and approval events and one invalid raw-secret case.
+- **Local validator and smoke hardening:** Added `runtime:validate:event-model` and made smoke validation fail on child-script exit codes while keeping all checks no-network and no-deploy.
+- **Worker local test hardening:** Strengthened [scripts/test-cloudflare-worker-local.mjs](scripts/test-cloudflare-worker-local.mjs) to confirm disabled-by-default `POST /events`, the stubbed non-persistent enabled path, and local-readyz behavior without Supabase configuration.
 - **Initialized professional repository foundation:** Established the core directory layout, strategic specifications, and architecture maps aligning the codebase with parent standards.
 - **System Specifications:** Created [SPEC.md](SPEC.md) detailing inputs, outputs, non-goals, and SDK boundaries.
 - **Architectural Scaffolding:** Added [ARCHITECTURE.md](ARCHITECTURE.md) outlining data collector boundaries and cryptographic signing.

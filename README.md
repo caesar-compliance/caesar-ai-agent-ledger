@@ -12,7 +12,7 @@ This SDK is part of the Caesar AI Governance Hub ecosystem at [caesar.no](https:
 
 ### 🚦 Project Status
 > [!NOTE]
-> This repository is currently in the **repository foundation** stage. SDK implementation, middleware development, and cryptographic signing libraries are slated for future development phases.
+> This repository is currently in the **runtime scaffold / event model contract** stage. Local validation, metadata-first event modeling, and disabled-by-default ingestion are in place; persistence and any live event writing remain future gated work.
 
 ---
 
@@ -50,5 +50,6 @@ All runtime logs and transaction records produced by the SDK conform strictly to
 *   **[REPO_INVENTORY.md](REPO_INVENTORY.md)** — Structural file index of this codebase.
 *   **[PROJECT_STATE.md](PROJECT_STATE.md)** — Project phase, metadata tracker, and boundaries.
 *   **[NEXT_ACTIONS.md](NEXT_ACTIONS.md)** — Task execution lists and autonomous boundaries.
+*   **[docs/runtime/AGENT_EVENT_MODEL.md](docs/runtime/AGENT_EVENT_MODEL.md)** — Metadata-first event contract, IDs, risk levels, and retention rules.
 *   **[docs/RESEARCH_CONTEXT.md](docs/RESEARCH_CONTEXT.md)** — Functional domain research and strategic context.
 *   **[docs/DECISION_LOG.md](docs/DECISION_LOG.md)** — Architectural decision log history.

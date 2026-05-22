@@ -9,6 +9,7 @@
     "runtime:db:health": "node scripts/runtime/check-runtime-db-health.mjs",
     "runtime:supabase:apply": "node scripts/runtime/apply-supabase-schema.mjs",
     "runtime:validate:schema": "node scripts/runtime/validate-supabase-schema.mjs",
+    "runtime:validate:event-model": "node scripts/runtime/validate-agent-event-schema.mjs",
     "runtime:seed:dev": "node scripts/runtime/seed-dev-data.mjs",
     "runtime:smoke": "node scripts/runtime/runtime-smoke.mjs",
     "runtime:ingestion:dry-run": "node scripts/runtime/run-ingestion-dry-run.mjs",

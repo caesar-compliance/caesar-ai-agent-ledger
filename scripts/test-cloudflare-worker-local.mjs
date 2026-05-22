@@ -26,20 +26,68 @@ global.Response = MockResponse;
 
 const { default: worker } = await import(WORKER);
 let failed = 0;
-for (const route of ["/healthz", "/readyz", "/version"]) {
-  const res = await worker.fetch(new MockRequest(`https://t${route}`), {});
-  if (!res.ok && route !== "/readyz") failed++;
-  else console.log(`PASS: ${route}`);
+
+function fail(message) {
+  console.log(`FAIL: ${message}`);
+  failed += 1;
 }
-const post = await worker.fetch(
-  new MockRequest("https://t/events", { method: "POST" }),
-  {},
-);
-const postBody = await post.json();
-if (post.status !== 403) {
-  console.log("FAIL: POST /events should be disabled");
-  failed++;
+
+function pass(message) {
+  console.log(`PASS: ${message}`);
+}
+
+async function requestJson(pathname, env = {}, method = "GET") {
+  return worker.fetch(new MockRequest(`https://t${pathname}`, { method }), env);
+}
+
+const health = await requestJson("/healthz", { WORKER_NAME: "agent-ledger-runtime-dev" });
+if (health.status !== 200 || !health.ok) fail("/healthz should return 200");
+else pass("/healthz");
+
+const readyWithoutSupabase = await requestJson("/readyz", {
+  WORKER_NAME: "agent-ledger-runtime-dev",
+});
+if (readyWithoutSupabase.status !== 503 || readyWithoutSupabase.ok) {
+  fail("/readyz without Supabase env should return 503 in local dev");
 } else {
-  console.log("PASS: POST /events disabled by default");
+  const body = await readyWithoutSupabase.json();
+  if (body.ready !== false) fail("/readyz without Supabase env should report ready=false");
+  else pass("/readyz without Supabase env returns 503 and ready=false");
 }
+
+const readyWithSupabase = await requestJson("/readyz", {
+  WORKER_NAME: "agent-ledger-runtime-dev",
+  SUPABASE_URL: "https://example.supabase.co",
+  SUPABASE_SERVICE_ROLE_KEY: "sb_secret_local_stub",
+});
+if (readyWithSupabase.status !== 200 || !readyWithSupabase.ok) {
+  fail("/readyz with Supabase env should return 200");
+} else {
+  pass("/readyz with Supabase env returns 200");
+}
+
+const version = await requestJson("/version", { WORKER_NAME: "agent-ledger-runtime-dev" });
+if (version.status !== 200 || !version.ok) fail("/version should return 200");
+else pass("/version");
+
+const disabled = await requestJson("/events", {}, "POST");
+const disabledBody = await disabled.json();
+if (disabled.status !== 403) {
+  fail("POST /events should be disabled by default");
+} else if (disabledBody.dry_run_only !== true || disabledBody.error !== "disabled") {
+  fail("POST /events disabled response should be explicit and dry-run only");
+} else {
+  pass("POST /events disabled by default");
+}
+
+const enabled = await requestJson("/events", { ENABLE_AGENT_EVENTS: "true" }, "POST");
+const enabledBody = await enabled.json();
+if (enabled.status !== 202) {
+  fail("POST /events with ENABLE_AGENT_EVENTS=true should return stubbed 202");
+} else if (enabledBody.status !== "accepted_stub" || enabledBody.persisted !== false) {
+  fail("POST /events enabled stub must remain non-persistent");
+} else {
+  pass("POST /events returns stubbed non-persistent response when enabled locally");
+}
+
 process.exit(failed ? 1 : 0);
