@@ -1,0 +1,11 @@
+{
+  "worker_name": "agent-ledger-runtime-dev",
+  "runtime_env": "dev",
+  "provision_mode": "documented_only",
+  "bindings": {
+    "kv_runtime_config": { "type": "kv_namespace", "required": false, "provisioned": false },
+    "queue_agent_events": { "type": "queue", "required": false, "provisioned": false },
+    "r2_exports": { "type": "r2_bucket", "required": false, "provisioned": false }
+  },
+  "primary_database": "supabase:caesar-agent-ledger-dev"
+}

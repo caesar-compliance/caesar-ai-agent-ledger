@@ -162,32 +162,68 @@ jobs:
             echo "CLOUDFLARE_WORKER_NAME=${CLOUDFLARE_WORKER_NAME}"
           } >> .env.cloudflare.local
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Runtime credential sanity check
         run: node scripts/runtime/check-service-credentials.mjs
 
       - name: Apply Supabase schema
         if: inputs.apply_schema == 'YES'
-        run: |
-          echo "::error::schema apply not implemented for caesar-ai-agent-ledger — no reviewed apply script in repo"
-          exit 1
+        env:
+          APPLY_SUPABASE_SCHEMA: "true"
+        run: npm run runtime:supabase:apply
 
-      - name: Worker deploy
-        if: inputs.deploy_worker == 'YES'
+
+      - name: Setup wrangler
+        if: inputs.deploy_worker == 'YES' || inputs.set_worker_secrets == 'YES'
+        run: npm install -g wrangler@3
+
+      - name: Prepare Worker wrangler.toml
+        if: inputs.deploy_worker == 'YES' || inputs.set_worker_secrets == 'YES'
+        working-directory: ops/cloudflare-workers/agent-ledger-runtime
         run: |
-          echo "::warning::Worker deploy skipped — Cloudflare Worker scaffold not present in agent-ledger"
-        id: deploy_worker
+          set -euo pipefail
+          cp wrangler.toml.example wrangler.toml
+          sed -i "s/^name = .*/name = \"${CLOUDFLARE_WORKER_NAME}\"/" wrangler.toml
+          echo "account_id = \"${CLOUDFLARE_ACCOUNT_ID}\"" >> wrangler.toml
 
       - name: Set Worker secrets
         if: inputs.set_worker_secrets == 'YES'
-        run: echo "::warning::Worker secrets skipped — no Worker scaffold"
+        working-directory: ops/cloudflare-workers/agent-ledger-runtime
+        run: |
+          printf '%s' "${SUPABASE_URL}" | wrangler secret put SUPABASE_URL --name "${CLOUDFLARE_WORKER_NAME}"
+          printf '%s' "${SUPABASE_SECRET_KEY}" | wrangler secret put SUPABASE_SERVICE_ROLE_KEY --name "${CLOUDFLARE_WORKER_NAME}"
+
+      - name: Deploy Worker
+        id: deploy_worker
+        if: inputs.deploy_worker == 'YES'
+        working-directory: ops/cloudflare-workers/agent-ledger-runtime
+        run: |
+          set -euo pipefail
+          DEPLOY_LOG="$(mktemp)"
+          wrangler deploy --name "${CLOUDFLARE_WORKER_NAME}" 2>&1 | tee "$DEPLOY_LOG"
+          WORKER_URL="$(grep -Eo 'https://[A-Za-z0-9._-]+\.workers\.dev' "$DEPLOY_LOG" | head -1 || true)"
+          [ -n "$WORKER_URL" ] || WORKER_URL="https://${CLOUDFLARE_WORKER_NAME}.workers.dev"
+          echo "worker_url=${WORKER_URL}" >> "$GITHUB_OUTPUT"
 
       - name: Post-deploy health smoke
-        if: inputs.post_deploy_smoke == 'YES' && inputs.deploy_worker == 'YES'
-        run: echo "::warning::Health smoke skipped — Worker not deployed"
+        if: inputs.post_deploy_smoke == 'YES' && inputs.deploy_worker == 'YES' && steps.deploy_worker.outcome == 'success'
+        env:
+          WORKER_URL: ${{ steps.deploy_worker.outputs.worker_url }}
+        run: |
+          for p in /healthz /readyz /version; do
+            code="$(curl -sS -o /dev/null -w '%{http_code}' "${WORKER_URL}${p}" || echo 000)"
+            echo "${p}: ${code}"
+            if [ "$code" = "200" ]; then exit 0; fi
+          done
+          echo "::warning::health smoke: no 200"
 
       - name: Dry-run ingestion
         if: inputs.run_dry_ingestion == 'YES'
-        run: echo "::warning::Dry-run ingestion skipped — no ingestion scripts in agent-ledger yet"
+        run: |
+          npm run runtime:ingestion:dry-run
+          npm run runtime:smoke
 
       - name: One-shot live ingestion
         if: inputs.run_live_ingestion_once == 'YES'
@@ -208,7 +244,7 @@ jobs:
             echo "## Dev runtime activation summary"
             echo "- Repo: caesar-ai-agent-ledger"
             echo "- Mode: validation and credential readiness (schema-plan)"
-            echo "- Worker scaffold: missing"
-            echo "- Schema apply script: missing"
+            echo "- Worker: ops/cloudflare-workers/agent-ledger-runtime"
+            echo "- Schema apply: npm run runtime:supabase:apply when apply_schema=YES"
             echo "- See docs/runtime/DEV_RUNTIME_ACTIVATION.md"
           } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,20 @@
+{
+  "name": "caesar-ai-agent-ledger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Caesar AI Agent Ledger — dev runtime scaffold",
+  "scripts": {
+    "runtime:services:check": "node scripts/runtime/check-service-credentials.mjs",
+    "runtime:db:health": "node scripts/runtime/check-runtime-db-health.mjs",
+    "runtime:supabase:apply": "node scripts/runtime/apply-supabase-schema.mjs",
+    "runtime:validate:schema": "node scripts/runtime/validate-supabase-schema.mjs",
+    "runtime:seed:dev": "node scripts/runtime/seed-dev-data.mjs",
+    "runtime:smoke": "node scripts/runtime/runtime-smoke.mjs",
+    "runtime:ingestion:dry-run": "node scripts/runtime/run-ingestion-dry-run.mjs",
+    "test:worker:local": "node scripts/test-cloudflare-worker-local.mjs"
+  },
+  "devDependencies": {
+    "pg": "^8.16.0"
+  }
+}

@@ -1,0 +1,11 @@
+name = "agent-ledger-runtime-dev"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+RUNTIME_ID = "agent-ledger-runtime-v1"
+WORKER_NAME = "agent-ledger-runtime-dev"
+RUNTIME_ENV = "dev"
+ENABLE_AGENT_EVENTS = "false"
+
+# Secrets: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY

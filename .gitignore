@@ -1,4 +1,6 @@
 .DS_Store
+node_modules/
+reports/runtime-db-health.latest.json
 
 # Local runtime secrets (examples are committed)
 .env
