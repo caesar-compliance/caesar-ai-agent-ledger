@@ -23,3 +23,12 @@ This document maps all high-level technical, strategic, and governance decisions
     2. Keep import behavior dry-run only, mapping intended future operations to `agent_runs`, `agent_events`, and `runtime_events` without opening any Supabase connection.
     3. Preserve strict redaction and forbidden-content checks so no raw secrets, raw customer data, or raw full prompts are exported.
 *   **Rationale:** Prepares backend ingestion boundaries while preserving offline safety and disabled-by-default persistence.
+
+### [DEC-003] — 22 May 2026 — Read-only Local Event Projection
+
+*   **Status:** Approved
+*   **Decisions:**
+    1. Add a local-only read-only projection layer that accepts exactly one source (`events`, `bufferFile`, or `bundleDir`) and emits deterministic metadata-only entities.
+    2. Enforce schema validation, forbidden-content checks, and idempotency-key deduplication before applying optional filters (`run_id`, `event_type`, `risk_level`).
+    3. Keep projection strictly offline and non-persistent: no Supabase writes, no Worker deploy/use requirement, no network, and no change to disabled-by-default `POST /events`.
+*   **Rationale:** Improves local product-data inspection quality while preserving current runtime safety gates and no-ingestion boundaries.

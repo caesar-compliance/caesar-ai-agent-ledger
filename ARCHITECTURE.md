@@ -36,6 +36,7 @@ The SDK is structured into four core module boundaries:
 4.  **Signing Registry:** Integrates cryptographic signing. Using local private keys, it signs each log block in future gated phases.
 5.  **Buffer & Exporter:** Handles low-latency local buffering through the local JSONL event buffer, writing redacted streams to disk and keeping WebSocket streaming future gated.
 6.  **Export/Import Dry-Run Contract:** Packages validated buffered events into deterministic local bundles and computes local-only import plans for `agent_runs`, `agent_events`, and `runtime_events` without network or persistence.
+7.  **Read-only Projection Layer:** Builds deterministic local read models (`runs`, `events`, `approvals`, `tool_calls`, `risks`, `errors`, `summary`) from validated local buffer or export-bundle events.
 
 ---
 

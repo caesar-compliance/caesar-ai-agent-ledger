@@ -7,8 +7,8 @@ This document prioritizes upcoming development tasks and establishes execution b
 ## 🚦 Execution Boundaries
 
 ### 1. Prioritized Next Steps
-*   **Local export/import dry-run:** Keep the local JSONL buffer + export bundle + import dry-run contract aligned with metadata-first event capture.
-*   **Read-only projection:** Build a local read-only projection over buffered/exported events as the next step after T017.
+*   **Read-only projection hardening:** Keep local projection behavior deterministic and metadata-only across local buffer and export-bundle inputs.
+*   **Next product view:** Implement either a localhost-only read-only API over the projection or a static local dashboard over projection output.
 
 ### 2. Safe Autonomous Tasks
 *   Adding comments and documentation files inside the planned SDK module structures.

@@ -8,12 +8,12 @@ This document tracks the current active state, milestones, and boundaries for th
 
 *   **Repository Name:** `caesar-ai-agent-ledger`
 *   **Current Version:** `0.1.0`
-*   **Current Phase:** `runtime scaffold / local event export-import dry-run`
+*   **Current Phase:** `runtime scaffold / read-only local projection`
 *   **Status:** `active`
-*   **Latest Known Commit:** `pending final T017 closeout`
-*   **Latest Completed Task:** `Implemented a local-only export/import contract for buffered events with deterministic bundle output, bundle validation, and import dry-run planning.`
-*   **Active Work Item:** `T017-local-event-export-import-contract`
-*   **Next Recommended Step:** `add a read-only local projection over buffered/exported events`
+*   **Latest Known Commit:** `pending final T018 closeout`
+*   **Latest Completed Task:** `Implemented a read-only local event projection over local buffer and export-bundle event sources with deterministic filtering and metadata-only output.`
+*   **Active Work Item:** `T018-read-only-local-event-projection`
+*   **Next Recommended Step:** `add either a localhost-only read-only projection API or a static local dashboard over projection outputs`
 
 ---
 

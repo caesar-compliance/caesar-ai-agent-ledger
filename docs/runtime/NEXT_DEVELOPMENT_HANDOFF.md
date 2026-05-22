@@ -1,6 +1,6 @@
 # Agent Ledger — Next development handoff
 
-**Frozen:** 22 May 2026 (T017 local event export/import contract)
+**Frozen:** 22 May 2026 (T018 read-only local event projection)
 **Branch:** `main`
 **Status:** Runtime scaffold now includes local-only JSONL buffering plus deterministic export bundle and import dry-run planning, still **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
 
@@ -17,6 +17,7 @@
 | Local event model schema validation | **Pass** (T015) |
 | Local event buffer append/read/summarize/validate | **Pass** (T016) |
 | Local export/import bundle and dry-run mapping | **Pass** (T017) |
+| Read-only local projection over buffer/export bundle | **Pass** (T018) |
 
 **Note:** This is an **internal audit/runtime ledger**, not a public watcher site.
 
@@ -51,6 +52,7 @@ node scripts/runtime/validate-supabase-schema.mjs
 npm run runtime:validate:event-model
 npm run runtime:test:event-buffer
 npm run runtime:test:event-export-import
+npm run runtime:test:event-projection
 node scripts/test-cloudflare-worker-local.mjs
 npm run runtime:smoke
 ```
@@ -112,6 +114,7 @@ Internal **AI agent audit ledger**: tasks, runs, events, runtime_events for gove
 3. Do not commit secrets or `.env.*.local`.
 4. Event model and local buffer doc changes are safe to commit; infrastructure changes need Control Tower.
 5. Final report required.
+6. Next likely product step after T018: a localhost-only read-only API over projection output or a static local dashboard.
 
 ## References
 
