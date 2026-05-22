@@ -1,8 +1,8 @@
 # Agent Ledger — Next development handoff
 
-**Frozen:** 22 May 2026 (T020 static/private local dashboard over projection/API-compatible data)
+**Frozen:** 22 May 2026 (T021 backend runtime readiness boundary hardening)
 **Branch:** `main`
-**Status:** Runtime scaffold now includes local-only JSONL buffering plus deterministic export bundle and import dry-run planning, still **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
+**Status:** Runtime scaffold includes local-only JSONL buffering, deterministic export/import dry-run, read-only projection/API/dashboard, and machine-checkable runtime boundary validation; runtime remains **not** activated (no CI schema apply, no Worker deploy, no hosted ingestion).
 
 ## 1. Current state
 
@@ -20,6 +20,7 @@
 | Read-only local projection over buffer/export bundle | **Pass** (T018) |
 | Localhost-only read-only projection API | **Pass** (T019) |
 | Static/private local dashboard | **Pass** (T020) |
+| Backend runtime readiness boundary validator | **Pass** (T021) |
 
 **Note:** This is an **internal audit/runtime ledger**, not a public watcher site.
 
@@ -117,7 +118,7 @@ Internal **AI agent audit ledger**: tasks, runs, events, runtime_events for gove
 3. Do not commit secrets or `.env.*.local`.
 4. Event model and local buffer doc changes are safe to commit; infrastructure changes need Control Tower.
 5. Final report required.
-6. Next likely product step after T020: backend runtime readiness boundary hardening and/or local Supabase migration rehearsal compile gate (no live apply unless explicitly approved).
+6. Next likely product step after T021: local Supabase migration rehearsal/compile gate (still no live apply) or controlled private runtime setup preparation only after explicit approval.
 
 ## References
 

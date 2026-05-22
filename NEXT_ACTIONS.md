@@ -7,7 +7,7 @@ This document prioritizes upcoming development tasks and establishes execution b
 ## 🚦 Execution Boundaries
 
 ### 1. Prioritized Next Steps
-*   **Runtime boundary hardening:** Keep localhost API and static dashboard behavior deterministic, metadata-only, and read-only across supported projection sources.
+*   **Runtime boundary hardening:** Completed in T021 with machine-checkable boundary validation and explicit non-activation constraints.
 *   **Next backend gate:** Add local Supabase migration rehearsal/compile validation gate without live schema apply.
 
 ### 2. Safe Autonomous Tasks
@@ -21,6 +21,7 @@ This document prioritizes upcoming development tasks and establishes execution b
 *   Altering public-facing SDK entry points, decorators, or module signatures.
 *   Enabling `POST /events` persistence or changing its default disabled state.
 *   Applying Supabase schema migrations or enabling live ingestion.
+*   Running GitHub Actions runtime activation or enabling cron/scheduler/hosted ingestion.
 
 ### 4. Blocked Tasks
 *   None.

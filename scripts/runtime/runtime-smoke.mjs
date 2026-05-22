@@ -12,6 +12,7 @@ const COMMANDS = [
   ["node", ["scripts/runtime/test-localhost-read-only-api.mjs"]],
   ["node", ["scripts/runtime/validate-static-local-dashboard.mjs"]],
   ["node", ["scripts/runtime/test-static-local-dashboard.mjs"]],
+  ["node", ["scripts/runtime/validate-runtime-readiness-boundary.mjs"]],
   ["node", ["scripts/runtime/validate-supabase-schema.mjs"]],
   ["node", ["scripts/runtime/check-service-credentials.mjs"]],
 ];

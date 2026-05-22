@@ -16,6 +16,7 @@
     "runtime:test:localhost-api": "node scripts/runtime/test-localhost-read-only-api.mjs",
     "runtime:validate:static-dashboard": "node scripts/runtime/validate-static-local-dashboard.mjs",
     "runtime:test:static-dashboard": "node scripts/runtime/test-static-local-dashboard.mjs",
+    "runtime:validate:boundary": "node scripts/runtime/validate-runtime-readiness-boundary.mjs",
     "runtime:seed:dev": "node scripts/runtime/seed-dev-data.mjs",
     "runtime:smoke": "node scripts/runtime/runtime-smoke.mjs",
     "runtime:ingestion:dry-run": "node scripts/runtime/run-ingestion-dry-run.mjs",

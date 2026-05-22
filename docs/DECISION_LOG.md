@@ -41,3 +41,12 @@ This document maps all high-level technical, strategic, and governance decisions
     2. Keep the API bound to `127.0.0.1` by default and reject `0.0.0.0` unless an explicit unsafe override is passed in code.
     3. Keep route responses metadata-only and JSON-only, with stable error envelopes and no write operations.
 *   **Rationale:** Enables local operator inspection tooling while preserving offline/no-write safety boundaries and existing disabled ingestion defaults.
+
+### [DEC-005] — 22 May 2026 — Backend Runtime Readiness Boundary Hardening
+
+*   **Status:** Approved
+*   **Decisions:**
+    1. Add a dedicated runtime readiness boundary contract and policy config that explicitly blocks deploy/apply/activation actions in T021.
+    2. Add a Node built-in boundary validator that checks required docs/scripts/files, workflow manual-gate semantics, worker/API/dashboard safety boundaries, and tracked secret-file constraints.
+    3. Make boundary validation part of runtime smoke so future runtime-related changes must pass machine-checkable non-activation safeguards.
+*   **Rationale:** Preserves safe-by-default local development while preparing future controlled runtime rehearsal and activation steps behind explicit approval.

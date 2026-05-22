@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "project_name": "caesar-ai-agent-ledger",
+  "package_name": "caesar-ai-agent-ledger",
+  "runtime_mode": "local_validation_only",
+  "allowed_hosts": [
+    "127.0.0.1"
+  ],
+  "forbidden_hosts": [
+    "0.0.0.0"
+  ],
+  "required_disabled_by_default_flags": [
+    "ENABLE_AGENT_EVENTS=false",
+    "APPLY_SUPABASE_SCHEMA=false",
+    "ENABLE_LIVE_INGESTION=false",
+    "ENABLE_SCHEDULED_MONITORING=false",
+    "CLOUDFLARE_ENABLE_WORKER_DEPLOY=false",
+    "CLOUDFLARE_ENABLE_CRON_TRIGGER=false"
+  ],
+  "required_validation_scripts": [
+    "runtime:validate:event-model",
+    "runtime:test:event-buffer",
+    "runtime:test:event-export-import",
+    "runtime:test:event-projection",
+    "runtime:test:localhost-api",
+    "runtime:validate:static-dashboard",
+    "runtime:test:static-dashboard",
+    "runtime:ingestion:dry-run",
+    "runtime:smoke"
+  ],
+  "required_docs": [
+    "docs/runtime/AGENT_EVENT_MODEL.md",
+    "docs/runtime/LOCAL_EVENT_BUFFER.md",
+    "docs/runtime/LOCAL_EVENT_EXPORT_IMPORT_CONTRACT.md",
+    "docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md",
+    "docs/runtime/LOCALHOST_READ_ONLY_API.md",
+    "docs/runtime/STATIC_LOCAL_DASHBOARD.md",
+    "docs/runtime/BACKEND_RUNTIME_READINESS_BOUNDARY.md"
+  ],
+  "required_local_dashboard_files": [
+    "site/local-dashboard/index.html",
+    "site/local-dashboard/assets/dashboard.css",
+    "site/local-dashboard/assets/dashboard.js",
+    "site/local-dashboard/data/sample-projection.json"
+  ],
+  "required_worker_behaviors": [
+    "POST /events disabled by default",
+    "no default live ingestion",
+    "no hardcoded secrets"
+  ],
+  "required_workflow_boundaries": [
+    "workflow_dispatch gated",
+    "explicit confirmation semantics",
+    "no scheduled cron trigger"
+  ],
+  "forbidden_tracked_files": [
+    ".env.runtime.local",
+    ".env.cloudflare.local",
+    ".env",
+    ".env.local"
+  ],
+  "forbidden_external_resource_patterns": [
+    "http://",
+    "https://",
+    "cdn",
+    "googletagmanager",
+    "google-analytics",
+    "fonts.googleapis",
+    "fonts.gstatic"
+  ],
+  "forbidden_secret_patterns": [
+    "sb_secret_",
+    "service_role_key",
+    "api_key",
+    "password",
+    "private_key",
+    "authorization: bearer"
+  ],
+  "generated_report_churn_file": "reports/runtime-services-readiness.latest.json"
+}

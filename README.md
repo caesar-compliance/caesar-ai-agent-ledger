@@ -12,7 +12,7 @@ This SDK is part of the Caesar AI Governance Hub ecosystem at [caesar.no](https:
 
 ### 🚦 Project Status
 > [!NOTE]
-> This repository is currently in the **runtime scaffold / static local dashboard** stage. Local validation, the metadata-first event model, local JSONL event buffer, local export/import dry-run contract, read-only local event projection, localhost-only read-only API, and a static private local dashboard are in place; persistence and any live event writing remain future gated work.
+> This repository is currently in the **runtime scaffold / backend runtime readiness boundary** stage. Local validation, the metadata-first event model, local JSONL event buffer, local export/import dry-run contract, read-only local event projection, localhost-only read-only API, static private local dashboard, and machine-checkable runtime boundary validation are in place; persistence and any live event writing remain future gated work.
 
 ---
 
@@ -56,6 +56,7 @@ All runtime logs and transaction records produced by the SDK conform strictly to
 *   **[docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md](docs/runtime/READ_ONLY_LOCAL_EVENT_PROJECTION.md)** — Read-only projection contract for local buffer/exported events.
 *   **[docs/runtime/LOCALHOST_READ_ONLY_API.md](docs/runtime/LOCALHOST_READ_ONLY_API.md)** — Localhost-only read-only API contract and safety boundaries.
 *   **[docs/runtime/STATIC_LOCAL_DASHBOARD.md](docs/runtime/STATIC_LOCAL_DASHBOARD.md)** — Static/private local dashboard contract and safety boundaries.
+*   **[docs/runtime/BACKEND_RUNTIME_READINESS_BOUNDARY.md](docs/runtime/BACKEND_RUNTIME_READINESS_BOUNDARY.md)** — Backend runtime readiness boundary, invariants, forbidden actions, and approval gates.
 *   **[docs/RESEARCH_CONTEXT.md](docs/RESEARCH_CONTEXT.md)** — Functional domain research and strategic context.
 *   **[docs/DECISION_LOG.md](docs/DECISION_LOG.md)** — Architectural decision log history.
 *   **[src/event-buffer/](src/event-buffer/)** — Local-only validator and JSONL buffer implementation.
